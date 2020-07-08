@@ -40,7 +40,7 @@ class GridViewBuild extends StatelessWidget {
     // ignore: missing_return
     return GridView.count(
       padding: EdgeInsets.all(15),
-      crossAxisCount: 3, //列数
+      crossAxisCount: 3, //列数必传参数
       crossAxisSpacing: 10, //列间距
       mainAxisSpacing: 15, //行间距
       childAspectRatio: 0.7,//宽度和高度的比例

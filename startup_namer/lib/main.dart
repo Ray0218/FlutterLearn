@@ -11,6 +11,9 @@ import 'package:startup_namer/cuslistcell.dart';
 
 import 'package:startup_namer/slRandomClor.dart';
 import 'package:startup_namer/gridViewDemo.dart';
+import 'package:startup_namer/rowColum.dart';
+
+import 'package:startup_namer/expandDemo.dart';
 
 void main() {
   runApp(MyApp());
@@ -83,7 +86,8 @@ class RandomWordsState extends State<RandomWords> {
     '_testListBody',
     '_testColum',
     '创建圆角',
-    'gridViewDemo'
+    'gridViewDemo',
+    'expand'
   ];
   final _saved = new Set<String>();
   final TextStyle _biggerFont = new TextStyle(fontSize: 18.0);
@@ -93,8 +97,8 @@ class RandomWordsState extends State<RandomWords> {
     return new Scaffold(
       body: Container(
         color: Colors.lightBlue[50],
-        height: 590,
-        width: 375,
+        // height: 590,
+        // width: 375,
         padding: EdgeInsets.all(10),
         margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
         child: _buildSuggestions(),
@@ -195,38 +199,7 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
-  Widget _testRow() {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        // Text(WordPair.random().asPascalCase,
-        //     style: TextStyle(fontSize: 20, color: Colors.red)),
-        // Text(WordPair.random().asPascalCase,
-        //     style: TextStyle(fontSize: 20, color: Colors.orange),
-        //     ),
-        Padding(
-          padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
-          child: Text(
-            "居中文本",
-            style: TextStyle(fontSize: 48, color: Colors.orange),
-          ),
-        ),
-
-        Icon(
-          Icons.local_airport,
-          color: Colors.red,
-          size: 60,
-          semanticLabel: 'sss',
-        ),
-        // Expanded(child: Text(WordPair.random().asPascalCase + '这个是一段恒产的文字 ')),
-        Expanded(
-            child: Text(WordPair.random().asPascalCase +
-                '测试��本长度过长时的效果 ,测试文本长度过长时的效果,测试文本长度过长时的效果'))
-      ],
-    );
-  }
-
+  
   Widget _testIndexStack() {
     return IndexedStack(
       index: 0, //显示children中的第一条
@@ -364,13 +337,7 @@ class RandomWordsState extends State<RandomWords> {
   //       });
   // }
 
-  Widget _testColum() {
-    return Column(
-      children: formColorList(10),
-      verticalDirection: VerticalDirection.down,
-      crossAxisAlignment: CrossAxisAlignment.start,
-    );
-  }
+  
 
   Widget _buildSuggestions() {
     return new ListView.builder(
@@ -435,7 +402,7 @@ class RandomWordsState extends State<RandomWords> {
         break;
 
       case 1:
-        return _testRow();
+        return TestRow();
         break;
 
       case 2:
@@ -464,13 +431,15 @@ class RandomWordsState extends State<RandomWords> {
         return _testListBody();
 
       case 9:
-        return _testColum();
+        return TestColumn();
 
       case 10:
         return TestCircle();
 
       case 11:
         return GridViewBuild();
+         case 12:
+        return TestExpand();
       default:
         return Text('no function');
     }

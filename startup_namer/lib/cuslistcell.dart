@@ -1,4 +1,3 @@
-import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +25,6 @@ class TestListCell extends StatelessWidget {
     }
 
     var dataArr = <PeronModel>[];
-
-    var random = Random();
 
     dataArr.addAll(_getData());
     return ListView.separated(

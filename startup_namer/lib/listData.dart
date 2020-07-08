@@ -23,7 +23,7 @@ List listData = [
         'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=10190708,1439802928&fm=111&gp=0.jpg'
   },
   {
-    'title': 'candy 大幅度发',
+    'title': '大幅度发',
     'author': '的顺丰到付',
     'summary':  "凭君莫话封侯事，一将功成万骨枯。你觉得如何?",
     'imageUrl':

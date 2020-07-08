@@ -10,6 +10,7 @@ import 'package:startup_namer/createcircle.dart';
 import 'package:startup_namer/cuslistcell.dart';
 
 import 'package:startup_namer/slRandomClor.dart';
+import 'package:startup_namer/gridViewDemo.dart';
 
 void main() {
   runApp(MyApp());
@@ -81,7 +82,8 @@ class RandomWordsState extends State<RandomWords> {
     'testListView',
     '_testListBody',
     '_testColum',
-    '创建圆角'
+    '创建圆角',
+    'gridViewDemo'
   ];
   final _saved = new Set<String>();
   final TextStyle _biggerFont = new TextStyle(fontSize: 18.0);
@@ -147,7 +149,6 @@ class RandomWordsState extends State<RandomWords> {
     return li;
   }
 
- 
   Widget _testTable() {
     var rowsArr = <TableRow>[];
     for (int i = 0; i < 10; i++) {
@@ -319,8 +320,6 @@ class RandomWordsState extends State<RandomWords> {
     );
   }
 
-  
-
   Widget _testListBody() {
     return Column(
       children: <Widget>[
@@ -467,8 +466,11 @@ class RandomWordsState extends State<RandomWords> {
       case 9:
         return _testColum();
 
-        case 10:
+      case 10:
         return TestCircle();
+
+      case 11:
+        return GridViewBuild();
       default:
         return Text('no function');
     }
@@ -534,4 +536,3 @@ class MarginFlowDelegate extends FlowDelegate {
     throw UnimplementedError();
   }
 }
-

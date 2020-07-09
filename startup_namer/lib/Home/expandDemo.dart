@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:startup_namer/rowColum.dart';
+import 'package:startup_namer/Home/rowColum.dart';
 
-import 'slRandomClor.dart';
-import 'slRandomClor.dart';
-
+import '../slRandomClor.dart';
+ 
 class TestExpand extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

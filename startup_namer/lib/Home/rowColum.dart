@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/slRandomClor.dart';
 
-import 'slRandomClor.dart';
+import '../slRandomClor.dart';
 
 class IconContainer extends StatelessWidget {
   double size = 32;

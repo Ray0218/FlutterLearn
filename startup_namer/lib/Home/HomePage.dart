@@ -71,6 +71,9 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print('点击了按钮');
+
+                        Navigator.pushNamed(context, '/search');
+
         },
         tooltip: "提示",
         highlightElevation: 30,

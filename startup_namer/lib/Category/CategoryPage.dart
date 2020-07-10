@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'SearchPage.dart';
-
+  
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
 
@@ -11,21 +11,15 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-
-
-    
     return Column(
       children: <Widget>[
         RaisedButton(
-            child: Text('调转到search页面'),
+            child: Text('调转到search页面,基本路由跳转'),
             onPressed: () {
               Navigator.of(context)
                   .push(new MaterialPageRoute(builder: (context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    title: Text('search页面'),
-                  ),
-                  body: SearchPage(),
+                return SearchPage(
+                  arguments: '基本路由传值',
                 );
               }));
             }),
@@ -33,9 +27,16 @@ class _CategoryPageState extends State<CategoryPage> {
           height: 20,
         ),
         RaisedButton(
-            child: Text('调转到search页面,匿名路由'),
+            child: Text('调转到search页面,命名路由'),
             onPressed: () {
-              Navigator.pushNamed(context, '/search');
+              // Navigator.pushNamed(context, '/search',arguments: {'id':'命名路由'});
+
+              Navigator.pushNamed(context, '/search', arguments: '命名路由');
+            }),
+        RaisedButton(
+            child: Text('调转到商品页面'),
+            onPressed: () {
+               Navigator.pushNamed(context,'/product');
             }),
       ],
     );

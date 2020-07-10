@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
- class SearchPage extends StatefulWidget {
-  SearchPage({Key key}) : super(key: key);
 
-  @override
-  _SearchPageState createState() => _SearchPageState();
-}
+class SearchPage extends StatelessWidget {
+  final arguments;
 
-class _SearchPageState extends State<SearchPage> {
+  SearchPage({this.arguments});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-      height: 600,
-
-color: Colors.blue,
-       child: Text('dddddd'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('search'),
+      ),
+      body: Container(
+        height: 150,
+        color: Colors.blue,
+        child: Text(arguments != null ? arguments : '0'),
+      ),
     );
   }
 }

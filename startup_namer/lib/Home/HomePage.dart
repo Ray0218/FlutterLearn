@@ -12,7 +12,6 @@ import 'package:startup_namer/home/cuslistcell.dart';
 import 'package:startup_namer/slRandomClor.dart';
 import 'package:english_words/english_words.dart';
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -21,7 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-   
   final _suggestions = <String>[
     "testTable",
     'TestRow',
@@ -47,6 +45,109 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: AppBar(
+        title: Text('首页'),
+      ),
+      drawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: DrawerHeader(
+                  child: Text('ddd'),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2816775233,230540815&fm=26&gp=0.jpg'),
+                          fit: BoxFit.cover)),
+                ))
+              ],
+            ),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.home),
+              ),
+              title: Text('我的空间'),
+            ),
+            Divider(),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(
+                  Icons.supervised_user_circle,
+                  color: slRandomColor(),
+                ),
+              ),
+              title: Text('用户中心'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamed('/userCenter');
+              },
+            ),
+            Divider(),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.settings),
+              ),
+              title: Text('设置中心'),
+            ),
+          ],
+        ),
+      ),
+      endDrawer: Drawer(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                    child: UserAccountsDrawerHeader(
+                  accountName: Text('用户昵称'),
+                  accountEmail: Text('123@163.com'),
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2905678561,227122043&fm=26&gp=0.jpg'),
+                  ),
+                  otherAccountsPictures: <Widget>[
+                    Image.network(
+                        'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1093983655,449926666&fm=111&gp=0.jpg'),
+                    Image.network(
+                        'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=10190708,1439802928&fm=111&gp=0.jpg')
+                  ],
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(
+                              'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2816775233,230540815&fm=26&gp=0.jpg'),
+                          fit: BoxFit.cover)),
+                )),
+              ],
+            ),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.home),
+              ),
+              title: Text('我的空间'),
+            ),
+            Divider(),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(
+                  Icons.supervised_user_circle,
+                  color: slRandomColor(),
+                ),
+              ),
+              title: Text('用户中心'),
+              onTap: () => Navigator.of(context).pushNamed('/userCenter'),
+            ),
+            Divider(),
+            ListTile(
+              leading: CircleAvatar(
+                child: Icon(Icons.settings),
+              ),
+              title: Text('设置中心'),
+            ),
+          ],
+        ),
+      ),
       body: Container(
         color: Colors.lightBlue[50],
         // height: 590,
@@ -56,33 +157,24 @@ class _HomePageState extends State<HomePage> {
         child: _buildSuggestions(),
       ),
 
-      // _buildSuggestions(),
-      //     Text(
-      //   "测试文本",
-      //   maxLines: 1,
-      //   style: TextStyle(color: Colors.blue,
-      //   wordSpacing: 5,
-      //   letterSpacing: 5,
-      //   fontSize: 20,
-      //   fontWeight: FontWeight.bold,
+ 
+      // floatingActionButton只能显示一个,多个会照成跳转问题
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.purple,
+      //   onPressed: () {
+      //     print('点击了按钮');
+
+      //     Navigator.pushNamed(context, '/search');
+      //   },
+      //   tooltip: "提示",
+      //   highlightElevation: 30,
+      //   child: Icon(
+      //     Icons.pages,
+      //     color: Colors.orange,
+      //     size: 40,
       //   ),
       // ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print('点击了按钮');
-
-                        Navigator.pushNamed(context, '/search');
-
-        },
-        tooltip: "提示",
-        highlightElevation: 30,
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-          size: 40,
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -138,17 +230,7 @@ class _HomePageState extends State<HomePage> {
         width: 1,
         style: BorderStyle.solid,
       ),
-      // children:  <TableRow>[
-
-      //   // TableRow(children: <Widget>[
-      //   //   Center(child: Text("姓名")),
-      //   //   Center(child: Text("年龄")),
-      //   //   Center(child: Text("称号")),
-      //   //   Center(child: Text("打的费")),
-      //   // ]),
-      //   // createTablerow("姓名", '年龄', '称号', '测试'),
-
-      // ],
+      
 
       children: rowsArr,
     );
@@ -247,41 +329,10 @@ class _HomePageState extends State<HomePage> {
       ],
     );
 
-    // return row(
-    //   children: <Widget>[
-    //     ListBody(
-    //         mainAxis: Axis.horizontal,
-    //         reverse: false,
-    //         children: formColorList(5))
-    //   ],
-    // );
+    
   }
 
-  // Widget _buildSuggestions() {
-  //   return new ListView.builder(
-  //       padding: const EdgeInsets.all(16.0),
-  //       // 对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
-  //       // 在偶数行，该函数会为单词对添加一个ListTile row.
-  //       // 在奇数行，该函数会添加一个分割线widget，来分隔相邻的词对。
-  //       // 注意，在小屏幕上，分割线看起来可能比较吃力。
-  //       itemBuilder: (context, i) {
-  //         // 在每一列之前，添加一个1像素高的分隔线widget
-  //         // if (i.isOdd) return new Divider();
-
-  //         // 语法 "i ~/ 2" 表示i除以2，但返回值是整形（向下取整），比如i为：1, 2, 3, 4, 5
-  //         // 时，结果为0, 1, 1, 2, 2， 这可以计算出ListView中减去分隔线后的实际单词对数量
-  //         // final index = i ~/ 2;
-
-  //         final index = i;
-
-  //         // 如果是建议列表中最后一个单词对
-  //         if (index >= _suggestions.length) {
-  //           // ...接着再生成10个单词对，然后添���到建议列表
-  //           _suggestions.addAll(generateWordPairs().take(10));
-  //         }
-  //         return _buildRow(_suggestions[index], i);
-  //       });
-  // }
+ 
 
   Widget _buildSuggestions() {
     return new ListView.builder(
@@ -310,16 +361,10 @@ class _HomePageState extends State<HomePage> {
         color: alreadySaved ? Colors.red : null,
       ),
       onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-
-        print(pair + '$index');
+         print(pair + '$index');
         _pushNextcontrol(pair, index);
+
+ 
       },
     );
   }
@@ -332,7 +377,7 @@ class _HomePageState extends State<HomePage> {
             appBar: new AppBar(
               title: new Text(title),
             ),
-            body: _getChild(index),
+            body:  _getChild(index),
           );
         },
       ),

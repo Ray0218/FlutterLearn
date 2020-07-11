@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:startup_namer/listData.dart';
-
+ 
 //创建圆形的方法
 class TestCircle extends StatelessWidget {
   

@@ -7,6 +7,7 @@ import 'Setting/Login.dart';
 import 'Setting/Register.dart';
 import 'Setting/RegisterSecond.dart';
 import 'Setting/TabbarController.dart';
+import 'Home/UserCenter.dart';
 
 final routes = {
   '/': (context, {arguments}) => Tabs(),
@@ -19,6 +20,8 @@ final routes = {
   '/registerSecond': (context) => RegisterSecondPage(),
   '/registerThird': (context) => RegisterThirdPage(),
   '/tabbatController': (context) => TabbarControllerPage(),
+  '/userCenter': (context) => UserCenterPage(),
+
 };
 
 // ignore: top_level_function_literal_block

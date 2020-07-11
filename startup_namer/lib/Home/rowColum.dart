@@ -4,9 +4,9 @@ import 'package:startup_namer/slRandomClor.dart';
 import '../slRandomClor.dart';
 
 class IconContainer extends StatelessWidget {
-  double size = 32;
-  IconData icon;
-  IconContainer(this.icon, {this.size});
+  final double size ;
+ final IconData icon;
+  IconContainer(this.icon, {this.size = 22});
 
   @override
   Widget build(BuildContext context) {

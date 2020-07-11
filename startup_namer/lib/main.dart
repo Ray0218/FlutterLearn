@@ -1,17 +1,8 @@
 // import 'dart:js_util';
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:startup_namer/Category/SearchPage.dart';
-// import 'package:flutter/semantics.dart';
+ import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:http/http.dart';
-
-import 'package:startup_namer/slRandomClor.dart';
-
-import 'package:startup_namer/tabBar.dart';
-import 'package:startup_namer/Home/wripDemo.dart';
-import 'package:english_words/english_words.dart';
 
 import 'Routes.dart';
 
@@ -27,11 +18,23 @@ class MyApp extends StatelessWidget {
     var materialApp = MaterialApp(
       debugShowCheckedModeBanner: false, //隐藏debug图标
 
+//配置国际化语言
+     localizationsDelegates: [
+     //此处
+     GlobalMaterialLocalizations.delegate,
+     GlobalWidgetsLocalizations.delegate,
+],
+supportedLocales: [
+     //此处
+     const Locale('zh', 'CH'),
+    //  const Locale('en', 'US'),
+],
+
       theme: ThemeData(
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: Tabs(),
+      // home:  Tabs(),
       initialRoute: '/', //替换home:tabs()
       onGenerateRoute: onGenerateRoute,
     );

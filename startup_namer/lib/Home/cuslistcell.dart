@@ -105,6 +105,8 @@ class ListItemView extends StatelessWidget {
     var desc = Column(
       //中间描述
       crossAxisAlignment: CrossAxisAlignment.start,
+
+      
       children: <Widget>[
         Card(
           color: Colors.lightGreen[200],

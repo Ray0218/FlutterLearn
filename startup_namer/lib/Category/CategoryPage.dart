@@ -15,7 +15,6 @@ class _CategoryPageState extends State<CategoryPage> {
       appBar: AppBar(
         title: Text('分类'),
       ),
-     
       body: Column(
         children: <Widget>[
           RaisedButton(
@@ -43,6 +42,15 @@ class _CategoryPageState extends State<CategoryPage> {
               onPressed: () {
                 Navigator.pushNamed(context, '/product');
               }),
+          RaisedButton(
+            
+
+            child: Text('网络请求'),
+            
+            onPressed: () {
+            
+            Navigator.pushNamed(context, '/getFlutterData');
+          })
         ],
       ),
     );

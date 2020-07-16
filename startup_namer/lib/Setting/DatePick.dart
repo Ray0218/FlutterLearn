@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_format/date_format.dart';
+import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 
 class DatePickerPage extends StatefulWidget {
   DatePickerPage({Key key}) : super(key: key);
@@ -45,6 +46,38 @@ class _DatePickerPageState extends State<DatePickerPage> {
     }
   }
 
+  void _showThirdDatePicker() {
+    DateTimePickerLocale _locale = DateTimePickerLocale.zh_cn;
+
+    DatePicker.showDatePicker(
+      context,
+      onMonthChangeStartWithFirstDate: true,
+      pickerTheme: DateTimePickerTheme(
+          showTitle: true,
+          confirm: Text('确定', style: TextStyle(color: Colors.red)),
+          cancel: Text('取消')),
+      minDateTime: DateTime.parse('2008-01-01'),
+      maxDateTime: DateTime.parse('2022-12-30'),
+      initialDateTime: _nowDate,
+      dateFormat: 'yyyy-MMMM-dd EEE HH:mm:ss',
+      pickerMode: DateTimePickerMode.datetime, // show TimePicker
+
+      locale: _locale,
+      onClose: () => print("----- onClose -----"),
+      onCancel: () => print('onCancel'),
+      onChange: (dateTime, List<int> index) {
+        setState(() {
+          _nowDate = dateTime;
+        });
+      },
+      onConfirm: (dateTime, List<int> index) {
+        setState(() {
+          _nowDate = dateTime;
+        });
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     print('当前日期' + DateTime.now().toString());
@@ -65,6 +98,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
         SizedBox(
           height: 30,
         ),
+        Text('系统日期组件'),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -92,6 +126,21 @@ class _DatePickerPageState extends State<DatePickerPage> {
               onTap: _showDatePickerAsy,
             )
           ],
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Text('第三方日期组件'),
+        SizedBox(height: 10),
+        InkWell(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(formatDate(_nowDate, [yyyy, '年', mm, '月', dd])),
+              Icon(Icons.arrow_drop_down)
+            ],
+          ),
+          onTap: _showThirdDatePicker,
         )
       ],
     );

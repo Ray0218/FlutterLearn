@@ -1,3 +1,5 @@
+import 'package:startup_namer/Category/GetHttpData.dart';
+
 import "Category/SearchPage.dart";
 import 'package:flutter/material.dart';
 import 'tabBar.dart';
@@ -8,6 +10,7 @@ import 'Setting/Register.dart';
 import 'Setting/RegisterSecond.dart';
 import 'Setting/TabbarController.dart';
 import 'Home/UserCenter.dart';
+import 'Setting/SliderDemo.dart';
 
 final routes = {
   '/': (context, {arguments}) => Tabs(),
@@ -21,6 +24,10 @@ final routes = {
   '/registerThird': (context) => RegisterThirdPage(),
   '/tabbatController': (context) => TabbarControllerPage(),
   '/userCenter': (context) => UserCenterPage(),
+
+    '/getFlutterData': (context) => GetHttpDataPage(),
+    '/sliderViewDemo': (context) =>SliverDemoPage(),
+
 
 };
 

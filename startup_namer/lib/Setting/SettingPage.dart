@@ -3,7 +3,9 @@ import 'package:startup_namer/Setting/TextFields.dart';
 import 'FormDemo.dart';
 import 'CheckRadio.dart';
 import 'DatePick.dart';
-
+import 'Swiper.dart';
+import 'Dialog.dart';
+ 
 class SettingPage extends StatefulWidget {
   SettingPage({Key key}) : super(key: key);
 
@@ -12,6 +14,21 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingState extends State<SettingPage> {
+  List<Widget>_tabs = [
+    Tab(
+      text: '登录',
+    ),
+    Tab(text: '注册'),
+    Tab(text: '按钮演示'),
+    Tab(text: '常用表单'),
+    Tab(text: '多选框'),
+    Tab(text: '表单练习'),
+    Tab(text: '日期时间'),
+    Tab(text: '轮播图(flutter_swiper)'),
+    Tab(text: 'dialog'),
+ 
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +36,7 @@ class _SettingState extends State<SettingPage> {
         title: Text('我的'),
       ),
       body: DefaultTabController(
-        length: 8,
+        length: _tabs.length,
         child: Scaffold(
           appBar: AppBar(
             title: Row(
@@ -31,26 +48,10 @@ class _SettingState extends State<SettingPage> {
                         indicatorColor: Colors.red,
                         labelColor: Colors.blue,
                         indicatorSize: TabBarIndicatorSize.label,
-                        tabs: <Widget>[
-                          Tab(
-                            text: '登录',
-                          ),
-                          Tab(text: '注册'),
-                          Tab(text: '按钮演示'),
-                          Tab(text: '常用表单'),
-                          Tab(text: '多选框'),
-                          Tab(text: '表单练习'),
-                          Tab(text: '日期时间'),
-                          Tab(text: '推荐'),
-                        ])),
+                        tabs:_tabs)),
               ],
             ),
-            // bottom: TabBar(tabs: <Widget>[
-            //   Tab(
-            //     text: '热门',
-            //   ),
-            //   Tab(text: '推荐'),
-            // ]),
+            
           ),
           body: TabBarView(children: [
             ListView(
@@ -68,9 +69,9 @@ class _SettingState extends State<SettingPage> {
                   },
                 ),
                 ListTile(
-                  title: Text('热门dd'),
+                  title: Text('sliverDemo'),
                   onTap: () {
-                    Navigator.pushNamed(context, '/login');
+                    Navigator.pushNamed(context, '/sliderViewDemo');
                   },
                 ),
               ],
@@ -226,7 +227,8 @@ class _SettingState extends State<SettingPage> {
                 ),
                 Row(
                   children: <Widget>[
-                    ButtonBar( //按钮组
+                    ButtonBar(
+                      //按钮组
 
                       alignment: MainAxisAlignment.end,
                       children: <Widget>[
@@ -255,7 +257,9 @@ class _SettingState extends State<SettingPage> {
             CheckView(),
             FormDemoPage(),
             DatePickerPage(),
-            Text('dd'),
+            SwiperView(),
+           DialogView(),
+ 
           ]),
         ),
       ),

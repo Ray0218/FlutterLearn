@@ -55,12 +55,20 @@ class TestCircle extends StatelessWidget {
             // colorBlendMode: BlendMode.overlay,
             height: 70,
             fit: BoxFit.cover),
-        Image.asset('images/image.png',
+       
+
+       Material(
+
+         borderRadius: BorderRadius.circular(12),
+         clipBehavior: Clip.hardEdge,
+child:  Image.asset('images/image.png',
             alignment: Alignment.center,
             color: Colors.orange,
             colorBlendMode: BlendMode.overlay,
             height: 70,
-            fit: BoxFit.cover)
+            fit: BoxFit.cover),
+
+       )
       ],
     );
   }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 
+import 'dart:async';
+
 class DatePickerPage extends StatefulWidget {
   DatePickerPage({Key key}) : super(key: key);
 
@@ -34,7 +36,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
     // _showDatePickerAsy();
   }
 
-  void _showDatePickerAsy() async {
+ Future<void>  _showDatePickerAsy() async {
     //利用async获取异步数据
 
     var result = await showTimePicker(context: context, initialTime: _nowTime);
@@ -46,7 +48,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
     }
   }
 
-  void _showThirdDatePicker() {
+void  _showThirdDatePicker() {
     DateTimePickerLocale _locale = DateTimePickerLocale.zh_cn;
 
     DatePicker.showDatePicker(

@@ -1,6 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:startup_namer/slRandomClor.dart';
 import 'CustomerDialog.dart';
+
+enum OptionValues { A, B, C }
 
 class DialogView extends StatefulWidget {
   DialogView({Key key}) : super(key: key);
@@ -10,8 +15,12 @@ class DialogView extends StatefulWidget {
 }
 
 class _DialogViewState extends State<DialogView> {
-  void _showAlterDialog() async {
+  String dialogSelectStr = ' ';
+
+  Future _showAlterDialog() async {
     var result = await showDialog(
+      //打开对话框
+      barrierDismissible: false, //点击空白可以关闭
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -35,10 +44,22 @@ class _DialogViewState extends State<DialogView> {
       //child: Text('sf')//child和builder不能同时设置
     );
 
+    if (result == '确定') {
+      setState(() {
+        dialogSelectStr = '确定';
+      });
+    } else {
+      setState(() {
+        dialogSelectStr = '取消';
+      });
+    }
+
     print(result);
   }
 
-  void _showSimpleDialog() async {
+  String simpleSeleString = ' ';
+
+  Future _showSimpleDialog() async {
     var result = await showDialog(
       barrierDismissible: false, //点击背景隐藏
       context: context,
@@ -51,7 +72,7 @@ class _DialogViewState extends State<DialogView> {
               onPressed: () {
                 print('Option A');
 
-                Navigator.pop(context, 'A');
+                Navigator.pop(context, OptionValues.A);
               },
             ),
             Divider(),
@@ -59,7 +80,7 @@ class _DialogViewState extends State<DialogView> {
               child: Text('Option B'),
               onPressed: () {
                 print('Option B');
-                Navigator.pop(context, 'B');
+                Navigator.pop(context, OptionValues.B);
               },
             ),
             Divider(),
@@ -67,7 +88,7 @@ class _DialogViewState extends State<DialogView> {
               child: Text('Option C'),
               onPressed: () {
                 print('Option C');
-                Navigator.pop(context, 'C');
+                Navigator.pop(context, OptionValues.C);
               },
             )
           ],
@@ -75,7 +96,54 @@ class _DialogViewState extends State<DialogView> {
       },
     );
 
+    switch (result) {
+      case OptionValues.A:
+        setState(() {
+          simpleSeleString = '选择了A';
+        });
+        break;
+
+      case OptionValues.B:
+        setState(() {
+          simpleSeleString = '选择了B';
+        });
+        break;
+
+      case OptionValues.C:
+        setState(() {
+          simpleSeleString = '选择了C';
+        });
+        break;
+      default:
+    }
+
     print(result);
+  }
+
+  final _bottomSheetScaffoldKey = GlobalKey<ScaffoldState>();
+  void _showBottomSheet() {
+    _bottomSheetScaffoldKey.currentState.showBottomSheet((context) {
+      return BottomAppBar(
+        child: Container(
+          height: 90,
+          width: double.infinity,
+          color: slRandomColor(),
+          padding: EdgeInsets.all(15),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.pause_circle_outline),
+              SizedBox(
+                width: 16,
+              ),
+              Text('测试'),
+              Expanded(
+                child: Text('我是放在expand中', textAlign: TextAlign.right),
+              )
+            ],
+          ),
+        ),
+      );
+    });
   }
 
   void _showModelBottomSheet() async {
@@ -150,41 +218,55 @@ class _DialogViewState extends State<DialogView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        ListTile(
-          title: Text('AlertDialog的用法'),
-          onTap: () {
-            _showAlterDialog();
-          },
-        ),
-        ListTile(
-          title: Text('SimpleDialog的用法'),
-          onTap: () {
-            _showSimpleDialog();
-            print('_showSimpleDialog');
-          },
-        ),
-        ListTile(
-          title: Text('_showModelBottomSheet用法'),
-          onTap: () {
-            _showModelBottomSheet();
-          },
-        ),
-        ListTile(
-          title: Text('Toast用法'),
-          onTap: () {
-            _showToast();
-          },
-        ),
-        ListTile(
-          title: Text('自定义dialog'),
-          onTap: () {
-            _showCustomerDialog();
-          },
-        ),
-      ],
+    return Scaffold(
+      key: _bottomSheetScaffoldKey,
+      body: ListView(
+         children: <Widget>[
+          ListTile(
+            title: Text('AlertDialog的用法: ${this.dialogSelectStr}'),
+            onTap: () {
+              _showAlterDialog();
+            },
+          ),
+          ListTile(
+            title: Text('SimpleDialog的用法: ${this.simpleSeleString}'),
+            onTap: () {
+              _showSimpleDialog();
+              print('_showSimpleDialog');
+            },
+          ),
+          ListTile(
+            title: Text('_showBottomSheet用法'),
+            onTap: () {
+              _showBottomSheet();
+            },
+          ),
+          ListTile(
+            title: Text('_showModelBottomSheet用法'),
+            onTap: () {
+              _showModelBottomSheet();
+            },
+          ),
+          ListTile(
+            title: Text('_SnackBar用法'),
+            onTap: () {
+              _showSnackBar();
+            },
+          ),
+          ListTile(
+            title: Text('Toast用法'),
+            onTap: () {
+              _showToast();
+            },
+          ),
+          ListTile(
+            title: Text('自定义dialog'),
+            onTap: () {
+              _showCustomerDialog();
+            },
+          ),
+         ],
+      ),
     );
   }
 
@@ -193,8 +275,21 @@ class _DialogViewState extends State<DialogView> {
     showDialog(
       context: context,
       builder: (context) {
-        return CustomerDialog('关于我们', content:'司法鉴定金发科技啊哈交互附近寒风就按');
+        return CustomerDialog('关于我们', content: '司法鉴定金发科技啊哈交互附近寒风就按');
       },
     );
   }
+
+  void _showSnackBar() {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text('加载中...'),
+      action: SnackBarAction(label: 'OK', onPressed: () {}),
+    ));
+  }
+
+   
 }
+
+
+
+ 

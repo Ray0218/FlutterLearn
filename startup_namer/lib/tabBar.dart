@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:startup_namer/Category/CategoryPage.dart';
 import 'package:startup_namer/Home/HomePage.dart';
 import 'package:startup_namer/Setting/SettingPage.dart';
- 
+
 class Tabs extends StatefulWidget {
   final int index;
 
@@ -43,7 +43,8 @@ class _TabsState extends State<Tabs> {
             borderRadius: BorderRadius.circular(30), color: Colors.red),
         // color: Colors.red, //color和decoration不能同时使用
         child: FloatingActionButton(
-          backgroundColor: this._currentIndex == 1 ? Colors.purple : Colors.grey ,
+          backgroundColor:
+              this._currentIndex == 1 ? Colors.purple : Colors.grey,
           onPressed: () {
             print('点击了按钮');
             setState(() {
@@ -60,8 +61,16 @@ class _TabsState extends State<Tabs> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // bottomNavigationBar: BottomAppBar(
+      //   shape: CircularNotchedRectangle(),
+      //   child: Container(
+      //     height: 80,
+      //     color: Colors.purple,
+      //   ),
+      // ),
 
       bottomNavigationBar: BottomNavigationBar(
+
         currentIndex: this._currentIndex, //选中的索引
         onTap: (int index) {
           setState(() {
@@ -86,7 +95,7 @@ class _TabsState extends State<Tabs> {
           ),
         ],
       ),
-      body:  this._pageList[this._currentIndex],
+      body: this._pageList[this._currentIndex],
     );
   }
 }

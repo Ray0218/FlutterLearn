@@ -32,35 +32,36 @@ class TestCardDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-      children: listData.map((value ) {
-       
+      children: listData.map((value) {
         return Card(
           margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
           color: slRandomColor(),
           child: Column(
             children: <Widget>[
               AspectRatio(
-                child: Image.network(
-                  value['imageUrl'],
-                  fit: BoxFit.cover,
+                child: ClipRect(
+                  clipBehavior: Clip.hardEdge,
+                  child: Image.network(
+                    value['imageUrl'],
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 aspectRatio: 2,
               ),
               ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                       value['imageUrl']),
+                  backgroundImage: NetworkImage(value['imageUrl']),
                 ),
-                title: Text( value['title']),
-                subtitle: Text( value['summary'],
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+                title: Text(value['title']),
+                subtitle: Text(
+                  value['summary'],
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
               ),
             ],
           ),
         );
-
       }).toList(),
     );
   }

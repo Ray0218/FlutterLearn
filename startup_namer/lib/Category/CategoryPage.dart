@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/Category/ChipPage.dart';
 import 'SearchPage.dart';
+import 'DataTablePage.dart';
+import 'PaginatedDataTablePage.dart';
+import 'StepPage.dart';
+import 'InheritedWidgetPage.dart';
+import 'StreamDemo.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -15,7 +21,7 @@ class _CategoryPageState extends State<CategoryPage> {
       appBar: AppBar(
         title: Text('分类'),
       ),
-      body: Column(
+      body: ListView(
         children: <Widget>[
           RaisedButton(
               child: Text('调转到search页面,基本路由跳转'),
@@ -27,9 +33,6 @@ class _CategoryPageState extends State<CategoryPage> {
                   );
                 }));
               }),
-          SizedBox(
-            height: 20,
-          ),
           RaisedButton(
               child: Text('调转到search页面,命名路由'),
               onPressed: () {
@@ -43,14 +46,63 @@ class _CategoryPageState extends State<CategoryPage> {
                 Navigator.pushNamed(context, '/product');
               }),
           RaisedButton(
-            
+              child: Text('网络请求'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/getFlutterData');
+              }),
+          RaisedButton(
+              child: Text('chip小碎片'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return ChipDemo();
+                }));
+              }),
 
-            child: Text('网络请求'),
-            
-            onPressed: () {
-            
-            Navigator.pushNamed(context, '/getFlutterData');
-          })
+               RaisedButton(
+              child: Text('DataTableDemo'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return DataTableView();
+                }));
+              }),
+
+                RaisedButton(
+              child: Text('PaginatedDataTableDemo'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return PageDataTableView();
+                }));
+              }),
+
+               RaisedButton(
+              child: Text('Stepper'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return StepView();
+                }));
+              }),
+
+                RaisedButton(
+              child: Text('InheritedWidget'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return StateManagerDemo();
+                }));
+              }),
+
+                 RaisedButton(
+              child: Text('StreamDemo'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return StreamDemo();
+                }));
+              }),
         ],
       ),
     );

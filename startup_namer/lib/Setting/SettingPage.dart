@@ -37,6 +37,8 @@ class _SettingState extends State<SettingPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('我的'),
+
+        // elevation: 0, //去掉导航栏阴影
       ),
       body: DefaultTabController(
         length: _tabs.length,

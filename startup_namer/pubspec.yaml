@@ -39,6 +39,7 @@ dependencies:
   fluttertoast: ^6.0.1
   dio: ^3.0.9
   intl: ^0.16.1 #国际化
+  scoped_model: ^1.0.1
 
 dev_dependencies:
   flutter_test:

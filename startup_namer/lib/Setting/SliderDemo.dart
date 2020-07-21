@@ -50,7 +50,8 @@ List images = listData.map((e) {
 }).toList();
 
 class SliverListDemo extends StatelessWidget {
-  @override
+
+   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {

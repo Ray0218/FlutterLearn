@@ -106,13 +106,25 @@ class _StreamDemoHomeState extends State<StreamDemoHome> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FlatButton(onPressed: _pauseStream, child: Text('Pause')),
-            FlatButton(onPressed: _resumeStream, child: Text('Resume')),
-            FlatButton(onPressed: _cancelStream, child: Text('Cancel')),
-            FlatButton(onPressed: _addStream, child: Text('Add')),
+            StreamBuilder(
+              stream: _mutilStreaControl.stream,
+              initialData: 'initialData',
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                return Text('snap + ${snapshot.data}');
+              },
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                FlatButton(onPressed: _pauseStream, child: Text('Pause')),
+                FlatButton(onPressed: _resumeStream, child: Text('Resume')),
+                FlatButton(onPressed: _cancelStream, child: Text('Cancel')),
+                FlatButton(onPressed: _addStream, child: Text('Add')),
+              ],
+            )
           ],
         ),
       ),

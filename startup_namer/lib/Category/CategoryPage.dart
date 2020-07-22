@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/Category/ChipPage.dart';
+import 'package:startup_namer/Category/RxDartDemo.dart';
 import 'SearchPage.dart';
 import 'DataTablePage.dart';
 import 'PaginatedDataTablePage.dart';
 import 'StepPage.dart';
 import 'InheritedWidgetPage.dart';
 import 'StreamDemo.dart';
+import 'BlocDemo.dart';
+import 'AnimationDemo.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -103,6 +106,35 @@ class _CategoryPageState extends State<CategoryPage> {
                   return StreamDemo();
                 }));
               }),
+
+                RaisedButton(
+              child: Text('RxDart'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return RxDartDemo();
+                }));
+              }),
+
+                RaisedButton(
+              child: Text('Bloc Demo'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return BlocDemo();
+                }));
+              }),
+
+                RaisedButton(
+              child: Text('AnimationDemo'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return AnimationDemo();
+                }));
+              }),
+
+              
         ],
       ),
     );

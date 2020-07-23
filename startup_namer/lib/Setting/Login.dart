@@ -15,20 +15,23 @@ class _LoginPageState extends State<LoginPage> {
         title: Text('登录'),
         centerTitle: true, //标题居中
         backgroundColor: Colors.cyan,
-        leading: IconButton( //左侧导航栏按钮
+        leading: IconButton(
+            //左侧导航栏按钮
             icon: Icon(Icons.menu),
             onPressed: () {
               print('点击menue');
             }),
 
-            actions: <Widget>[ //右侧导航按钮
+        actions: <Widget>[
+          //右侧导航按钮
 
- IconButton( //左侧导航栏按钮
-            icon: Icon(Icons.search),
-            onPressed: () {
-              print('点击右侧');
-            }),
-            ],
+          IconButton(
+              //左侧导航栏按钮
+              icon: Icon(Icons.search),
+              onPressed: () {
+                print('点击右侧');
+              }),
+        ],
       ),
       body: Stack(
         alignment: Alignment.center,

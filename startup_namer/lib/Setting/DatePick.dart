@@ -36,7 +36,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
     // _showDatePickerAsy();
   }
 
- Future<void>  _showDatePickerAsy() async {
+  Future<void> _showDatePickerAsy() async {
     //利用async获取异步数据
 
     var result = await showTimePicker(context: context, initialTime: _nowTime);
@@ -48,7 +48,7 @@ class _DatePickerPageState extends State<DatePickerPage> {
     }
   }
 
-void  _showThirdDatePicker() {
+  void _showThirdDatePicker() {
     DateTimePickerLocale _locale = DateTimePickerLocale.zh_cn;
 
     DatePicker.showDatePicker(
@@ -138,7 +138,7 @@ void  _showThirdDatePicker() {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(formatDate(_nowDate, [yyyy, '年', mm, '月', dd])),
+              Text(_nowTime.format(context)),
               Icon(Icons.arrow_drop_down)
             ],
           ),

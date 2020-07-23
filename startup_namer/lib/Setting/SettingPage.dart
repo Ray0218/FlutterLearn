@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/LocalizeDemo.dart';
 import 'package:startup_namer/Setting/TextFields.dart';
+import 'package:startup_namer/intl/kl_demo_localizations.dart';
 import 'FormDemo.dart';
 import 'CheckRadio.dart';
 import 'DatePick.dart';
 import 'Swiper.dart';
 import 'Dialog.dart';
 import 'ExpansionPanelDemo.dart';
+import '../LocalizeDemo.dart';
+
+
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key key}) : super(key: key);
@@ -27,9 +32,7 @@ class _SettingState extends State<SettingPage> {
     Tab(text: '日期时间'),
     Tab(text: '轮播图(flutter_swiper)'),
     Tab(text: 'dialog'),
-
-        Tab(text: 'ExpansionPanel'),
-
+    Tab(text: 'ExpansionPanel'),
   ];
 
   @override
@@ -78,6 +81,18 @@ class _SettingState extends State<SettingPage> {
                     Navigator.pushNamed(context, '/sliderViewDemo');
                   },
                 ),
+                ListTile(
+                  title: Text(
+                      '${Localizations.localeOf(context)} + ${Localizations.of(context, KLLocalizations).rTitle}'),
+                ),
+                ListTile(
+                  title: Text(
+                      '${Localizations.localeOf(context)} + ${KLLocalizations.local(context).rTitle}'),
+                ),
+
+                  ListTile(
+                  title: Text( KlDemoLocalizations.of(context).greet('傻傻')),
+                )
               ],
             ),
             ListView(
@@ -125,7 +140,7 @@ class ButtonsDemo extends StatefulWidget {
 }
 
 class _ButtonsDemoState extends State<ButtonsDemo> {
-    String _titleString = '首页';
+  String _titleString = '首页';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -286,7 +301,6 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
           ],
         ),
         Row(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(_titleString),

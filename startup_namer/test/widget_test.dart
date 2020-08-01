@@ -11,7 +11,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:startup_namer/main.dart';
 import 'package:startup_namer/testLearn/UnitTestDemo.dart';
 
-
 void main() {
   // testWidgets('Counter increments smoke test', (WidgetTester tester) async {
   //   // Build our app and trigger a frame.
@@ -30,10 +29,25 @@ void main() {
   //   expect(find.text('1'), findsOneWidget);
   // });
 
-
   test('should return hello + something', () {
     var greetString = KLTestDemo.greet('沙盒');
 
-    expect(greetString, 'hello 沙盒!');
+    expect(greetString, 'hello 沙盒');
   });
+
+  testWidgets(
+    "test description",
+    (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: TestDemo(),
+      ));
+
+      final labelText = find.text('test chip');
+      // expect(labelText, findsNothing);
+            // expect(labelText, findsOneWidget);
+
+      expect(labelText, findsNWidgets(1));
+
+    },
+  );
 }

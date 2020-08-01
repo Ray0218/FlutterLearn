@@ -7,6 +7,7 @@ import 'LocalizeDemo.dart';
 
 import 'Routes.dart';
 import 'intl/kl_demo_localizations.dart';
+import 'OpentionAnimation.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,8 +45,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home:  Tabs(),
-      initialRoute: '/', //替换home:tabs()
+      home:  OpenAnimationPage(),
+      // initialRoute: '/', //替换home:tabs()
       onGenerateRoute: onGenerateRoute,
     );
     return materialApp;

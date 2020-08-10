@@ -4,12 +4,18 @@ import 'package:flutter_shop/pages/cart_page/cart_bottom.dart';
 import 'package:provide/provide.dart';
 import '../provide/cart_provide.dart';
 import 'cart_page/cart_item.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key key}) : super(key: key);
 
+  
+
   @override
   Widget build(BuildContext context) {
+
+        _getCartInfo(context);
+
     return Scaffold(
         appBar: AppBar(
           title: Text('购物车'),
@@ -19,59 +25,67 @@ class CartPage extends StatelessWidget {
           builder: (context, child, value) {
             List<CartInfoModel> modelList = value.cartModelList;
 
-            print('购物车数据');
-
             return Stack(
-
               children: <Widget>[
-
                 ListView.builder(
-              itemCount: modelList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CartItem(
-                  item: modelList[index],
-                );
-              },
-            ),
-
-           Positioned(child:  CartBottom(),
-           bottom: 0,
-           )
+                  itemCount: modelList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return CartItem(
+                      item: modelList[index],
+                    );
+                  },
+                ),
+                Positioned(
+                  child: CartBottom(),
+                  bottom: 0,
+                )
               ],
             );
           },
         )
 
-        //  FutureBuilder(
-        //   future: _getCartInfo(context),
-        //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-        //     print('DDDDDD');
-        //     if (snapshot.hasData) {
-        //       // Provide.value<CartProvide>(context).getLocalCArtModels();
-        //       List<CartInfoModel> modelList =
-        //           Provide.value<CartProvide>(context).cartModelList;
+        //       FutureBuilder(
+        //     future: _getCartInfo(context),
+        //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+        //       if (snapshot.hasData) {
+        //         // Provide.value<CartProvide>(context).getLocalCArtModels();
+        //         List<CartInfoModel> modelList =
+        //             Provide.value<CartProvide>(context).cartModelList;
 
-        //       print('购物车数据');
+        //         print('购物车数据 == ');
 
-        //       return ListView.builder(
-        //         itemCount: modelList.length,
-        //         itemBuilder: (BuildContext context, int index) {
-        //           return CartItem(
-        //             item: modelList[index],
-        //           );
-        //         },
-        //       );
-        //     } else {
-        //       return Text('加载中...');
-        //     }
-        //   },
-        // ),
+        //         print(snapshot.data);
+
+        //         return Stack(
+        //           children: <Widget>[
+        //             ListView.builder(
+        //               padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(120)),
+        //               itemCount: modelList.length,
+        //               itemBuilder: (BuildContext context, int index) {
+        //                 return CartItem(
+        //                   item: modelList[index],
+        //                 );
+        //               },
+        //             ),
+        //             Positioned(
+        //               child: CartBottom(),
+        //               bottom: 0,
+        //             )
+        //           ],
+        //         );
+        //       } else {
+        //         return Text('加载中...');
+        //       }
+        //     },
+        //   ),
         );
   }
 
-  // Future _getCartInfo(BuildContext context) async {
-  //   await Provide.value<CartProvide>(context).getLocalCArtModels();
+  Future _getCartInfo(BuildContext context) async {
+    await Provide.value<CartProvide>(context).getLocalCArtModels();
 
-  //   return '请求本地完成';
-  // }
+    
+
+    return '请求本地完成';
+  }
 }

@@ -7,6 +7,7 @@ import 'details_page/detail_tab.dart';
 import '../provide/details_info.dart';
 import 'details_page/detail_web.dart';
 import 'details_page/details_botom.dart';
+import '../provide/current_index.dart';
 
 class DetailPage extends StatelessWidget {
   final String goodsId;
@@ -33,42 +34,38 @@ class DetailPage extends StatelessWidget {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Stack(
-
                   children: <Widget>[
-
                     Container(
-                  child: ListView(
-                    children: <Widget>[
-                      DetailTopArea(),
-                      DetailExplain(),
-                      // DetailTabBar(),
-                      Container(
-                        color: Colors.white,
-                        margin: EdgeInsets.only(top: 10.0),
-                        child: TabBar(
-                            labelColor: Colors.red,
-                            unselectedLabelColor: Colors.black54,
-                            onTap: (value) {
- 
-                              Provide.value<DetailInfoProvide>(context)
-                                  .changeTabSlect(value == 0 ? true : false);
-                            },
-                            labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                            tabs: [Text('详情'), Text('评论')]),
+                      child: ListView(
+                        children: <Widget>[
+                          DetailTopArea(),
+                          DetailExplain(),
+                          // DetailTabBar(),
+                          Container(
+                            color: Colors.white,
+                            margin: EdgeInsets.only(top: 10.0),
+                            child: TabBar(
+                                labelColor: Colors.red,
+                                unselectedLabelColor: Colors.black54,
+                                onTap: (value) {
+                                  print('点击 $value');
 
-                            
+                                  Provide.value<DetailInfoProvide>(context)
+                                      .changeTabSlect(
+                                          value == 0 ? true : false);
+                                },
+                                labelPadding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                tabs: [Text('详情'), Text('评论')]),
+                          ),
+
+                          DetailWeb()
+                        ],
                       ),
-
-                      DetailWeb()
-                    ],
-                  ),
-                ),
-                Positioned(
-                  child: DetailBottom(),
-
-                  bottom: 0,
-                
-                )
+                    ),
+                    Positioned(
+                      child: DetailBottom(),
+                      bottom: 0,
+                    )
                   ],
                 );
               } else {

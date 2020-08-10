@@ -11,6 +11,7 @@ import 'package:fluro/fluro.dart';
 import './routes/routers.dart';
 import './routes/application.dart';
 import 'provide/cart_provide.dart';
+import 'provide/current_index.dart';
 
 void main() {
   // runApp(MyApp());
@@ -21,13 +22,17 @@ void main() {
 
   var detailProvide = DetailInfoProvide();
   var cartProvide = CartProvide();
- 
+
+  var tabInexProvide =  CurrentIndexProvide();
+
   final providers = Providers();
   providers
     ..provide(Provider<CounterProivde>.value(rProvider))
     ..provide(Provider<ChildCategory>.value(childCategory))
     ..provide(Provider<CagegoryListProvide>.value(categoryListProvide))
     ..provide(Provider<CartProvide>.value(cartProvide))
+        ..provide(Provider<CurrentIndexProvide>.value(tabInexProvide))
+
     ..provide(Provider<DetailInfoProvide>.value(detailProvide));
 
   // ..provide(Provider.function((context) => CounterProivde(0)));

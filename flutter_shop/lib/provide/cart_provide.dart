@@ -9,6 +9,12 @@ class CartProvide with ChangeNotifier {
   String cartString = '[]';
 
   List<CartInfoModel> cartModelList = [];
+
+  double allPrice = 0.0; //总价
+  int allCount = 0; //商品总数
+
+  bool isAllCheck = true; //是否全选
+
   getLocalCArtModels() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -21,11 +27,30 @@ class CartProvide with ChangeNotifier {
     } else {
       cartModelList.clear();
       temp.forEach((element) {
-        cartModelList.add(CartInfoModel.fromJson(json.decode(element)));
+        CartInfoModel newModel = CartInfoModel.fromJson(json.decode(element));
+
+        cartModelList.add(newModel);
       });
     }
+
+    resettotalPrice();
     notifyListeners();
     // print('getLocalCArtMode/ls: ${json.encode(cartModelList)}');
+  }
+
+  resettotalPrice() {
+    allCount = 0;
+    allPrice = 0.0;
+
+    isAllCheck = true;
+    cartModelList.forEach((element) {
+      if (element.isCheck) {
+        allPrice += (element.count * element.price);
+        allCount += element.count;
+      } else {
+        isAllCheck = false;
+      }
+    });
   }
 
   saveGoods(CartInfoModel newModel) async {
@@ -42,6 +67,7 @@ class CartProvide with ChangeNotifier {
     }
 
     if (!isHave) {
+      newModel.isCheck = true;
       cartModelList.add(newModel);
     }
 
@@ -52,6 +78,7 @@ class CartProvide with ChangeNotifier {
     await prefs.setStringList('localCartInfo',
         cartModelList.map((e) => json.encode(e.toJson())).toList());
 
+    resettotalPrice();
     notifyListeners();
   }
 
@@ -60,6 +87,59 @@ class CartProvide with ChangeNotifier {
 
     cartModelList.clear();
     prefs.remove('localCartInfo');
+
+    resettotalPrice();
+
+    notifyListeners();
+  }
+
+  deleteGoods(String goodsId) async {
+    cartModelList.removeWhere((element) => element.goodsId == goodsId);
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    await prefs.setStringList('localCartInfo',
+        cartModelList.map((e) => json.encode(e.toJson())).toList());
+    resettotalPrice();
+
+    notifyListeners();
+  }
+
+  changeGoodCount(String goodId, int count, bool isPress) {
+    CartInfoModel mode =
+        cartModelList.firstWhere((element) => element.goodsId == goodId);
+
+    if (isPress) {
+      mode.count += count;
+    } else {
+      mode.count = count;
+    }
+    resettotalPrice();
+
+    notifyListeners();
+  }
+
+  changeCheckStatus(String goodsId) {
+    CartInfoModel mode =
+        cartModelList.firstWhere((element) => element.goodsId == goodsId);
+    mode.isCheck = !mode.isCheck;
+    resettotalPrice();
+
+    notifyListeners();
+  }
+
+  checkall(bool isAll) {
+    cartModelList.forEach((element) {
+
+    if (isAll) {
+            element.isCheck = true;
+
+    } else {
+            element.isCheck = false;
+     }
+    });
+    resettotalPrice();
+
     notifyListeners();
   }
 

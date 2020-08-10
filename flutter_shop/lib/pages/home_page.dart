@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage>
     await requestData(serviePath['homePageBelowConten'], formdata: formPage)
         .then((value) {
       HomeHotModel baseModel = HomeHotModel.fromJson(value);
-       print('获取结果: ${json.encode(value)}');
+      print('获取结果: ${json.encode(value)}');
       _hotGoos.addAll(baseModel.data);
     });
     // monitor network fetch
@@ -134,7 +134,7 @@ class _HomePageState extends State<HomePage>
                     child: ListView(
                       children: <Widget>[
                         SwiperBanner(bannerImages: rBaseModel.data.slides),
-                        // TopButtonsView(buttonsList: rBaseModel.data.category),
+                        TopButtonsView(buttonsList: rBaseModel.data.category),
                         // ADBanner(),
                         RecommendView(
                             rRecommendList: rBaseModel.data.recommend),
@@ -176,8 +176,9 @@ class _HomePageState extends State<HomePage>
   Widget _hotList() {
     if (_hotGoos.length != 0) {
       List<Widget> listWidget = _hotGoos.map((e) {
-         return InkWell(
+        return InkWell(
           onTap: () {
+            print(e.image);
             Appslication.router.navigateTo(context, '/detail?id=${e.goodsId}');
           },
           child: Container(
@@ -188,7 +189,9 @@ class _HomePageState extends State<HomePage>
             child: Stack(
               alignment: Alignment.center,
               children: <Widget>[
-                Image.network(kltransImages(e.image),),
+                Image.network(
+                  kltransImages(e.image),
+                ),
                 Positioned(
                   child: Text(e.name,
                       overflow: TextOverflow.ellipsis,
@@ -255,7 +258,7 @@ class _HomePageState extends State<HomePage>
     await requestData(serviePath['homePageBelowConten'], formdata: formPage)
         .then((value) {
       HomeHotModel baseModel = HomeHotModel.fromJson(value);
-      
+
       print('获取结果: ${json.decode(value)}');
       setState(() {
         _hotGoos.addAll(baseModel.data);
@@ -328,12 +331,14 @@ class CursomeButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        print(image);
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Image.network(
-            image,
+            kltransImages(image),
             width: ScreenUtil().setWidth(95),
           ),
           Text(title)
@@ -424,7 +429,7 @@ class RecommendView extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Image.network(
-    mode.image,
+              kltransImages(mode.image),
               fit: BoxFit.cover,
             ),
             Text(
@@ -470,7 +475,7 @@ class FloorTitle extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.all(8),
         child: Image.network(
-          image,
+          kltransImages(image),
           fit: BoxFit.cover,
         ),
       ),
@@ -517,7 +522,7 @@ class FloorContent extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Image.network(
-          goods.image,
+          kltransImages(goods.image),
           fit: BoxFit.cover,
         ),
       ),

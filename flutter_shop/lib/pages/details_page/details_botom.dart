@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/model/cart_model.dart';
+import 'package:flutter_shop/provide/current_index.dart';
 import 'package:provide/provide.dart';
 
 import '../../provide/details_info.dart';
@@ -21,13 +22,41 @@ class DetailBottom extends StatelessWidget {
       height: ScreenUtil().setHeight(120),
       child: Row(
         children: <Widget>[
-          InkWell(
-            child: Container(
-              width: ScreenUtil().setWidth(110),
-              alignment: Alignment.center,
-              child: Icon(Icons.shopping_cart, color: Colors.red, size: 35),
-            ),
-            onTap: () {},
+          Stack(
+            children: <Widget>[
+              InkWell(
+                child: Container(
+                  width: ScreenUtil().setWidth(110),
+                  alignment: Alignment.center,
+                  child: Icon(Icons.shopping_cart,
+                      color: Colors.red[400], size: 35),
+                ),
+                onTap: () {
+                  Provide.value<CurrentIndexProvide>(context).changeTabIndex(2);
+                  Navigator.pop(context);
+                },
+              ),
+              Provide<CartProvide>(
+                builder: (context, child, value) {
+                  return Positioned(
+                    top: 0,
+                    right: 8,
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(3, 2, 3, 2),
+                      decoration: BoxDecoration(
+                          color: Colors.pink,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        '${value.allCount}',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: ScreenUtil().setSp(22)),
+                      ),
+                    ),
+                  );
+                },
+              )
+            ],
           ),
           InkWell(
             child: Container(

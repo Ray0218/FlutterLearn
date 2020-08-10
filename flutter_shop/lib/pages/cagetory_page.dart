@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_shop/config/service_url.dart';
+import 'package:flutter_shop/klimage.dart';
 import 'package:flutter_shop/model/categoryModel.dart';
 import 'package:provide/provide.dart';
 import '../provide/child_category.dart';
@@ -8,7 +9,6 @@ import '../model/category_list_demo.dart';
 import '../service/service_method.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../routes/application.dart';
-
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -77,6 +77,19 @@ class _LeftCategoryViewState extends State<LeftCategoryView> {
             title: Text(parentModels[index].mallCategoryName,
                 style: TextStyle(fontSize: ScreenUtil().setSp(28))),
             onTap: () {
+
+
+
+              Fluttertoast.showToast(
+        msg: "This is Center Short Toast",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+    
               var childList = parentModels[index].bxMallSubDto;
 
               Provide.value<ChildCategory>(context).setChildListData(childList);
@@ -196,22 +209,24 @@ class CategoryGoodsList extends StatefulWidget {
 }
 
 class _CategoryGoodsListState extends State<CategoryGoodsList> {
-  var rScrollerController = ScrollController();
+  var rScrollerController = ScrollController(keepScrollOffset: false);
+
+   
 
   @override
   Widget build(BuildContext context) {
-   return Expanded(
+    return Expanded(
         child: Container(
       width: ScreenUtil().setWidth(750 - 200),
       child: Provide<CagegoryListProvide>(builder: (context, chiild, provide) {
-        try {
-          if (Provide.value<CagegoryListProvide>(context).rPage == 1) {
-            print('当前是第一页');
-            rScrollerController.jumpTo(0.0); //返回到顶部
-          }
-        } catch (e) {
-          print('进入页面第一次初始化 $e');
-        }
+        // try {
+        //   if (Provide.value<CagegoryListProvide>(context).rPage == 1 ) {
+        //     print('当前是第一页');
+        //     rScrollerController.jumpTo(0.0); //返回到顶部
+        //   }
+        // } catch (e) {
+        //   print('进入页面第一次初始化 $e');
+        // }
 
         if (provide.rChildList.length > 0) {
           return ListView.builder(
@@ -232,10 +247,9 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
 
   Widget _listWidget(int index, List<CategoryListData> rDataList) {
     return InkWell(
-
       onTap: () {
-                    Appslication.router.navigateTo(context, '/detail?id=${rDataList[index].goodsId}');
-
+        Appslication.router
+            .navigateTo(context, '/detail?id=${rDataList[index].goodsId}');
       },
       child: Container(
         padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -260,7 +274,10 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
   Widget _goodsImage(int index, List<CategoryListData> rDataList) {
     return Container(
       width: ScreenUtil().setWidth(200),
-      child: Image.network(rDataList[index].image),
+      child: Image.network(
+       kltransImages(rDataList[index].image)
+      
+ ),
     );
   }
 

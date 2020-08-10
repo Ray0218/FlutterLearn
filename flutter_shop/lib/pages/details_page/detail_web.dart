@@ -18,7 +18,7 @@ class DetailWeb extends StatelessWidget {
           if (goodsDetails != null) {
             return Container(
               color: Colors.orange,
-              padding: EdgeInsets.zero,
+              // padding: EdgeInsets.zero,
               child: Html(
               
                 data: goodsDetails,

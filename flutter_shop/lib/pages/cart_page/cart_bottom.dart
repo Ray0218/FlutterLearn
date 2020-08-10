@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/provide/cart_provide.dart';
+import 'package:provide/provide.dart';
 
 class CartBottom extends StatelessWidget {
   const CartBottom({Key key}) : super(key: key);
@@ -10,25 +12,37 @@ class CartBottom extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(5.0),
       height: ScreenUtil().setHeight(120),
-      color: Colors.orange,
-      child: Row(
-        children: <Widget>[_selectAllBtn(), _appPriceArea(), _goButton()],
+      color: Colors.white,
+      child: Provide<CartProvide>(
+        builder: (context, child, value) {
+          return Row(
+            children: <Widget>[
+              _selectAllBtn(context,value.isAllCheck),
+              _appPriceArea(value.allPrice),
+              _goButton(value.allCount)
+            ],
+          );
+        },
       ),
     );
   }
 
-  Widget _selectAllBtn() {
+  Widget _selectAllBtn(BuildContext context,isSelect ) {
     return Container(
       child: Row(
         children: <Widget>[
-          Checkbox(value: true, onChanged: (value) {}),
+          Checkbox(
+              value: isSelect,
+              onChanged: (value) {
+                Provide.value<CartProvide>(context).checkall(!isSelect);
+              }),
           Text('全选')
         ],
       ),
     );
   }
 
-  Widget _appPriceArea() {
+  Widget _appPriceArea(double appPrice) {
     return Container(
       width: ScreenUtil().setWidth(380),
       child: Column(
@@ -44,7 +58,7 @@ class CartBottom extends StatelessWidget {
               ),
               SizedBox(width: 5),
               Text(
-                '¥:122',
+                '¥:$appPrice',
                 style: TextStyle(
                     color: Colors.red, fontSize: ScreenUtil().setSp(36)),
               )
@@ -60,7 +74,7 @@ class CartBottom extends StatelessWidget {
     );
   }
 
-  Widget _goButton() {
+  Widget _goButton(int count) {
     return Container(
       width: ScreenUtil().setWidth(200),
       padding: EdgeInsets.only(left: 10),
@@ -71,7 +85,7 @@ class CartBottom extends StatelessWidget {
             decoration: BoxDecoration(
                 color: Colors.red, borderRadius: BorderRadius.circular(3.0)),
             child: Text(
-              '结算(6)',
+              '结算($count)',
               style: TextStyle(
                 color: Colors.white,
               ),

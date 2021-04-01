@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:startup_namer/slRandomClor.dart';
@@ -121,6 +122,13 @@ class _CheckViewState extends State<CheckView> {
                     this.flag = value;
                   });
                 }),
+                CupertinoSwitch(value: flag, onChanged: (bool value) { 
+
+                  setState(() {
+                                      flag = value;
+                                    });
+
+                 },),
             SwitchListTile(
                 value: this.flag,
                 title: Text('swithcA'),
@@ -137,7 +145,6 @@ class _CheckViewState extends State<CheckView> {
                 value: _sliderValue,
                 activeColor: Colors.orange,
                 inactiveColor: Colors.blue,
-
                 min: 0.0,
                 max: 1.0,
                 divisions: 100,
@@ -146,9 +153,15 @@ class _CheckViewState extends State<CheckView> {
                     _sliderValue = value;
                   });
                 }),
-
-                Text('slider当前值:  ${this._sliderValue}')
-
+            Text('slider当前值:  ${this._sliderValue}'),
+            CupertinoSlider(
+              onChanged: (double value) {
+                setState(() {
+                  _sliderValue = value;
+                });
+              },
+              value: _sliderValue,
+            )
           ],
         )
       ],

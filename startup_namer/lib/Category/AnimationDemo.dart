@@ -33,7 +33,6 @@ class _AnimationHomeState extends State<AnimationHome>
 
   @override
   void initState() {
-    super.initState();
 
     animationDemoController = AnimationController(
       duration: Duration(milliseconds: 3000),
@@ -56,25 +55,31 @@ class _AnimationHomeState extends State<AnimationHome>
         .animate(curAnimation);
 
     animationDemoController.addListener(() {
-      print('监听 ${animationDemoController.value}');
-
-     });
+      // print('监听 ${animationDemoController.value}');
+    });
 
     animationDemoController.addStatusListener((status) {
       print('status= $status');
     });
 
     // animationDemoController.forward(); //开始播放动画
+
+        super.initState();
+
   }
 
   @override
   void dispose() {
-    super.dispose();
     animationDemoController.dispose();
+
+        super.dispose();
+
   }
 
   @override
   Widget build(BuildContext context) {
+    print("######   AnimationHome 重载了   #######");
+
     return Center(
       child: AnimationHeart(
         animations: [animation, animationColor],
@@ -93,6 +98,10 @@ class AnimationHeart extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("#############");
+
+    print("######   AnimationHeart 重载了   #######");
+
     return IconButton(
         icon: Icon(Icons.favorite),
         // iconSize: animationDemoController.value,

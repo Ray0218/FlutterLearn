@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_namer/Category/ChipPage.dart';
 import 'package:startup_namer/Category/RxDartDemo.dart';
+import 'package:startup_namer/Category/snackbarDemo.dart';
 import 'SearchPage.dart';
 import 'DataTablePage.dart';
 import 'PaginatedDataTablePage.dart';
@@ -9,6 +11,7 @@ import 'InheritedWidgetPage.dart';
 import 'StreamDemo.dart';
 import 'BlocDemo.dart';
 import 'AnimationDemo.dart';
+import 'animationControllerdemo.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -20,11 +23,16 @@ class CategoryPage extends StatefulWidget {
 class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('分类'),
-      ),
-      body: ListView(
+
+return CupertinoPageScaffold(
+
+  navigationBar: CupertinoNavigationBar(
+
+    middle: Text("分类"),
+    backgroundColor: Colors.blue,
+  ),
+  
+  child: ListView(
         children: <Widget>[
           RaisedButton(
               child: Text('调转到search页面,基本路由跳转'),
@@ -134,9 +142,52 @@ class _CategoryPageState extends State<CategoryPage> {
                 }));
               }),
 
+              ElevatedButton(
+                onPressed: (){
+
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+
+return KLCsanAnimation();
+                  }));
+
+              }, child: Text('animationController')) ,
+
+               ElevatedButton(
+
+                 style: ButtonStyle(
+
+
+foregroundColor: MaterialStateProperty.all(Colors.blue),
+                   textStyle: MaterialStateProperty.all(TextStyle(
+
+                     fontSize: 20,
+                     color: Colors.red
+                   ))
+
+                 ),
+                onPressed: (){
+
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
+
+return KLSnackDemo();
+                  }));
+
+              }, child: Text('SnackBar')) ,
+
               
         ],
-      ),
-    );
+      )
+
+  
+
+
+);
+
+   
   }
 }
+
+
+
+
+

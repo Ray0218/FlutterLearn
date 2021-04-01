@@ -1,0 +1,41 @@
+PODS:
+  - Flutter (1.0.0)
+  - path_provider (0.0.1):
+    - Flutter
+  - sensors (0.0.1):
+    - Flutter
+  - shared_preferences (0.0.1):
+    - Flutter
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - sensors (from `.symlinks/plugins/sensors/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - SnapKit (~> 5.0.1)
+
+SPEC REPOS:
+  trunk:
+    - SnapKit
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  path_provider:
+    :path: ".symlinks/plugins/path_provider/ios"
+  sensors:
+    :path: ".symlinks/plugins/sensors/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  sensors: 84eb7a30e47a649e4172b71d6e81be614c280336
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: 98666174e6a1ba7d9b292fe34542baa898d2a145
+
+COCOAPODS: 1.10.0

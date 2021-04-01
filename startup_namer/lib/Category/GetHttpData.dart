@@ -24,7 +24,7 @@ class _GetHttpDataPageState extends State<GetHttpDataPage> {
 
     print(json.decode(strData)); //json字符串转Map类型
 
-    this._getData().then((value) => print('then ======= $value'));
+    // this._getData().then((value) => print('then ======= $value'));
   }
 
   @override
@@ -74,7 +74,7 @@ class _GetHttpDataPageState extends State<GetHttpDataPage> {
 
   Future<List<BookModel>> _getData() async {
     // var url = 'http://a.itying.com/api/productlist';
-    var url = 'http://resources.ninghao.net/demo/posts.json';
+    var url = Uri.parse('http://resources.ninghao.net/demo/posts.json');
 
     // Await the http get response, then decode the json-formatted response.
     var response = await http.get(url);
@@ -91,6 +91,7 @@ class _GetHttpDataPageState extends State<GetHttpDataPage> {
 
       throw Exception('Fail tot get Data');
     }
+    
 
     // http.get(url).then((response) {
     //   if (response.statusCode == 200) {

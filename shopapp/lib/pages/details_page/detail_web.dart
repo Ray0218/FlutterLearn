@@ -28,11 +28,25 @@ class DetailWeb extends StatelessWidget {
             return Text('加载中...');
           }
         } else {
+          print(value.goodsInfo.data.goodComments);
           return Container(
-            alignment: Alignment.center,
-            height: ScreenUtil().setHeight(400),
-            child: Text('暂无数据'),
-          );
+              alignment: Alignment.center,
+              height: ScreenUtil().setHeight(400),
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                          value.goodsInfo.data.goodComments[index].userName),
+                      subtitle: Text(
+                          value.goodsInfo.data.goodComments[index].comments),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      height: 1,
+                    );
+                  },
+                  itemCount: value.goodsInfo.data.goodComments.length));
         }
       },
     );

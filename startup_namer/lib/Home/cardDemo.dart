@@ -9,14 +9,14 @@ class TestCard extends StatelessWidget {
       color: slRandomColor(),
       margin: EdgeInsets.all(30),
       child: Padding(
-        padding: EdgeInsets.all(30),
+        padding: EdgeInsets.all(20),
         child: Container(
           width: 300,
           color: Colors.blue,
           child: AspectRatio(
             //铺满父组件
             //铺满整个组件
-            aspectRatio: 2.0, //子组件宽高比
+            aspectRatio: 4.0, //子组件宽高比
             child: Container(
               color: Colors.red,
             ),
@@ -34,6 +34,7 @@ class TestCardDemo extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
       children: listData.map((value) {
         return Card(
+          
           margin: EdgeInsets.fromLTRB(15, 15, 15, 0),
           color: slRandomColor(),
           child: Column(
@@ -48,7 +49,7 @@ class TestCardDemo extends StatelessWidget {
                 ),
                 aspectRatio: 2,
               ),
-              ListTile(
+               ListTile(
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(value['imageUrl']),
                 ),

@@ -49,11 +49,11 @@ Future requestData(String path, {dynamic formdata}) async {
     resonse = await dio.post(path, data: formdata);
 
     if (resonse.statusCode == 200) {
-      // print('############# $path ################');
+      print('############# $path ################');
 
-      // print(resonse.data);
+      print(resonse.data);
 
-      // print('#############################');
+      print('#############################');
 
       return json.decode(resonse.data);
     } else {

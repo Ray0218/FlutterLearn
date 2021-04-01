@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   String homePageContent = '正在请求数据';
 
- 
   List<HotItemModel> _hotGoos = [];
+  int rPage = 1;
 
   @override
   void initState() {
@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage>
       RefreshController(initialRefresh: false);
 
   void _onRefresh() async {
+    rPage = 1;
     var formPage = {'page': 1};
 
     await requestData(serviePath['homePageBelowConten'], formdata: formPage)
@@ -56,17 +57,21 @@ class _HomePageState extends State<HomePage>
       print('获取结果: ${json.encode(value)}');
       _hotGoos.addAll(baseModel.data);
     });
-     
-    _refreshController.refreshCompleted();
+
+    _refreshController.loadComplete();
   }
 
   void _onLoading() async {
-    // monitor network fetch
-    await Future.delayed(Duration(milliseconds: 1000));
-    // if failed,use loadFailed(),if no data return,use LoadNodata()
-    // _hotGoos.addAll(posts);
-    // if (mounted) setState(() {});
-    _refreshController.loadComplete();
+    var formPage = {'page': ++rPage};
+
+    await requestData(serviePath['homePageBelowConten'], formdata: formPage)
+        .then((value) {
+      HomeHotModel baseModel = HomeHotModel.fromJson(value);
+      print('获取结果: ${json.encode(value)}');
+      _hotGoos.addAll(baseModel.data);
+
+      _refreshController.refreshCompleted();
+    });
   }
 
   @override
@@ -279,8 +284,9 @@ class SwiperBanner extends StatelessWidget {
         itemCount: bannerImages.length,
         itemBuilder: (context, index) {
           return InkWell(
-            child: 
-            klImage(bannerImages[index].image,width: ScreenUtil().setWidth(750),height: ScreenUtil().setHeight(333)),
+            child: klImage(bannerImages[index].image,
+                width: ScreenUtil().setWidth(750),
+                height: ScreenUtil().setHeight(333)),
             // Image.network(
             //   kltransImages(bannerImages[index].image),
             //   fit: BoxFit.cover,
@@ -340,7 +346,9 @@ class CursomeButtons extends StatelessWidget {
           //   width: ScreenUtil().setWidth(95),
           // ),
 
-          klImage(image,width: ScreenUtil().setWidth(95),height: ScreenUtil().setWidth(95)),
+          klImage(image,
+              width: ScreenUtil().setWidth(95),
+              height: ScreenUtil().setWidth(95)),
           Text(title)
         ],
       ),
@@ -432,7 +440,7 @@ class RecommendView extends StatelessWidget {
             //   kltransImages(mode.image),
             //   fit: BoxFit.cover,
             // ),
-            klImage(mode.image,width: 80.0,height: 80.0),
+            klImage(mode.image, width: 80.0, height: 80.0),
             Text(
               '价格 ${mode.price}',
               style: TextStyle(decoration: TextDecoration.lineThrough),
@@ -474,15 +482,15 @@ class FloorTitle extends StatelessWidget {
     return Container(
       color: slRandomColor(),
       child: Padding(
-        padding: EdgeInsets.all(8),
-        child: 
-        
-        klImage(image,width: ScreenUtil().setWidth(750),height: ScreenUtil().setHeight(120))
-        // Image.network(
-        //   kltransImages(image),
-        //   fit: BoxFit.cover,
-        // ),
-      ),
+          padding: EdgeInsets.all(8),
+          child: klImage(image,
+              width: ScreenUtil().setWidth(750),
+              height: ScreenUtil().setHeight(120))
+          // Image.network(
+          //   kltransImages(image),
+          //   fit: BoxFit.cover,
+          // ),
+          ),
     );
   }
 }
@@ -524,12 +532,16 @@ class FloorContent extends StatelessWidget {
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(12.0))),
       child: InkWell(
-        onTap: () {},
-        child: Image.network(
-          kltransImages(goods.image),
-          fit: BoxFit.cover,
-        ),
-      ),
+          onTap: () {},
+          child:
+              // Image.network(
+              //   kltransImages(goods.image),
+              //   fit: BoxFit.cover,
+              // ),
+
+              klImage(goods.image,
+                  width: ScreenUtil().setWidth(300),
+                  height: ScreenUtil().setHeight(300))),
     );
   }
 }

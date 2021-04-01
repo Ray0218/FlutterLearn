@@ -32,6 +32,8 @@ class _StateManagerDemoState extends State<StateManagerDemo> {
     //   ),
     // );
 
+    
+
     return ScopedModel(
       model: CounterModel(),
       child: Scaffold(
@@ -98,6 +100,9 @@ class CounterFather extends StatelessWidget {
     return Center(child: Counter());
   }
 }
+  
+
+
 
 class CounterProvider extends InheritedWidget {
   final int count;

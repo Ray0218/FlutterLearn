@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_format/date_format.dart';
-import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
+// import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 
 import 'dart:async';
 
@@ -49,35 +49,35 @@ class _DatePickerPageState extends State<DatePickerPage> {
   }
 
   void _showThirdDatePicker() {
-    DateTimePickerLocale _locale = DateTimePickerLocale.zh_cn;
+    // DateTimePickerLocale _locale = DateTimePickerLocale.zh_cn;
 
-    DatePicker.showDatePicker(
-      context,
-      onMonthChangeStartWithFirstDate: true,
-      pickerTheme: DateTimePickerTheme(
-          showTitle: true,
-          confirm: Text('确定', style: TextStyle(color: Colors.red)),
-          cancel: Text('取消')),
-      minDateTime: DateTime.parse('2008-01-01'),
-      maxDateTime: DateTime.parse('2022-12-30'),
-      initialDateTime: _nowDate,
-      dateFormat: 'yyyy-MMMM-dd EEE HH:mm:ss',
-      pickerMode: DateTimePickerMode.datetime, // show TimePicker
+    // DatePicker.showDatePicker(
+    //   context,
+    //   onMonthChangeStartWithFirstDate: true,
+    //   // pickerTheme: DateTimePickerTheme(
+    //   //     showTitle: true,
+    //   //     confirm: Text('确定', style: TextStyle(color: Colors.red)),
+    //   //     cancel: Text('取消')),
+    //   minDateTime: DateTime.parse('2008-01-01'),
+    //   maxDateTime: DateTime.parse('2022-12-30'),
+    //   initialDateTime: _nowDate,
+    //   dateFormat: 'yyyy-MMMM-dd EEE HH:mm:ss',
+    //   pickerMode: DateTimePickerMode.datetime, // show TimePicker
 
-      locale: _locale,
-      onClose: () => print("----- onClose -----"),
-      onCancel: () => print('onCancel'),
-      onChange: (dateTime, List<int> index) {
-        setState(() {
-          _nowDate = dateTime;
-        });
-      },
-      onConfirm: (dateTime, List<int> index) {
-        setState(() {
-          _nowDate = dateTime;
-        });
-      },
-    );
+    //   locale: _locale,
+    //   onClose: () => print("----- onClose -----"),
+    //   onCancel: () => print('onCancel'),
+    //   onChange: (dateTime, List<int> index) {
+    //     setState(() {
+    //       _nowDate = dateTime;
+    //     });
+    //   },
+    //   onConfirm: (dateTime, List<int> index) {
+    //     setState(() {
+    //       _nowDate = dateTime;
+    //     });
+    //   },
+    // );
   }
 
   @override

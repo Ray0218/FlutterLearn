@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:startup_namer/home/wripDemo.dart';
@@ -12,6 +13,8 @@ import 'package:startup_namer/home/cuslistcell.dart';
 import 'package:startup_namer/slRandomClor.dart';
 import 'package:english_words/english_words.dart';
 
+import 'nativeIosView.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
 
@@ -23,7 +26,7 @@ class _HomePageState extends State<HomePage> {
   final _suggestions = <String>[
     "testTable",
     'TestRow',
-    'testIndexStack',
+    'testContainer',
     'testFlow',
     'testWrip',
     'testGridView',
@@ -36,14 +39,27 @@ class _HomePageState extends State<HomePage> {
     'expand',
     'stackDemo',
     'card and AspectRatio',
-    'TestCardDemo'
+    'TestCardDemo',
+    'autocomplete',
+    'KLNativeViewDemo'
   ];
 
   final _saved = new Set<String>();
   final TextStyle _biggerFont = new TextStyle(fontSize: 18.0);
 
+  ScrollController _scrComtroller = ScrollController();
+
+  @override
+  void initState() { 
+ 
+    super.initState();
+ 
+     
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("HomePage 重绘了 ");
     return new Scaffold(
       appBar: AppBar(
         title: Text('首页'),
@@ -154,10 +170,20 @@ class _HomePageState extends State<HomePage> {
         // width: 375,
         padding: EdgeInsets.all(10),
         margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
-        child: _buildSuggestions(),
+        child: Stack(
+          children: [
+            _buildSuggestions(),
+            Positioned(
+                child: ElevatedButton(
+              child: Text('回到最低部'),
+              onPressed: () {
+                _scrComtroller.jumpTo(_scrComtroller.position.maxScrollExtent);
+              },
+            ))
+          ],
+        ),
       ),
 
- 
       // floatingActionButton只能显示一个,多个会照成跳转问题
       // floatingActionButton: FloatingActionButton(
       //   backgroundColor: Colors.purple,
@@ -230,21 +256,37 @@ class _HomePageState extends State<HomePage> {
         width: 1,
         style: BorderStyle.solid,
       ),
-      
-
       children: rowsArr,
     );
   }
 
-  Widget _testIndexStack() {
-    return IndexedStack(
-      index: 0, //显示children中的第一条
-      alignment: Alignment.centerLeft,
-      children: <Widget>[
-        Text("#11111111111#"),
-        Text("#2222222222"),
-        Text("333333333"),
-      ],
+  Widget _testContainer() {
+    return Container(
+      alignment: Alignment.center,
+      child: Container(
+        width: 200,
+        height: 200,
+        //  color: Colors.orange,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [Colors.blue, Colors.orange]),
+            // color: Colors.blue,
+            image: DecorationImage(
+                image: NetworkImage("https://picsum.photos/180/180?random=20")),
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(color: Colors.red, offset: Offset(5, 5)),
+              BoxShadow(color: Colors.purple, offset: Offset(-5, -5))
+            ]),
+
+        foregroundDecoration: BoxDecoration(
+            color: Color.fromRGBO(0, 0, 0, 0.5), shape: BoxShape.circle),
+      ),
+
+      // constraints:  BoxConstraints(
+
+      //   maxWidth: 100
+      // ),
     );
   }
 
@@ -328,14 +370,11 @@ class _HomePageState extends State<HomePage> {
             mainAxis: Axis.vertical, reverse: false, children: formColorList(5))
       ],
     );
-
-    
   }
-
- 
 
   Widget _buildSuggestions() {
     return new ListView.builder(
+      controller: _scrComtroller,
       padding: const EdgeInsets.all(16.0),
       // 对于每���建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTile行中
       // 在偶数行，该函数会为单词对添加一个ListTile row.
@@ -345,6 +384,7 @@ class _HomePageState extends State<HomePage> {
         return _buildRow(_suggestions[i], i);
       },
       itemCount: _suggestions.length,
+      itemExtent: 60,
     );
   }
 
@@ -361,10 +401,8 @@ class _HomePageState extends State<HomePage> {
         color: alreadySaved ? Colors.red : null,
       ),
       onTap: () {
-         print(pair + '$index');
+        print(pair + '$index');
         _pushNextcontrol(pair, index);
-
- 
       },
     );
   }
@@ -377,7 +415,7 @@ class _HomePageState extends State<HomePage> {
             appBar: new AppBar(
               title: new Text(title),
             ),
-            body:  _getChild(index),
+            body: _getChild(index),
           );
         },
       ),
@@ -395,7 +433,7 @@ class _HomePageState extends State<HomePage> {
         break;
 
       case 2:
-        return _testIndexStack();
+        return _testContainer();
         break;
 
       case 3:
@@ -436,6 +474,14 @@ class _HomePageState extends State<HomePage> {
         return TestCard();
       case 15:
         return TestCardDemo();
+
+      case 16:
+        return AutocompleteBasicExample();
+
+
+  case 17:
+        return  
+        KLNativeViewDemo();
       default:
         return Text('no function');
     }

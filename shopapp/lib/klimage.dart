@@ -9,6 +9,8 @@ String kltransImages(String url) {
 }
 
 Widget klImage(String urls,{double width,double height}) {
+
+  return Image.network(urls,fit: BoxFit.cover,width: width,height: height);
 return  new Container(
     // width: 100.0,
     // height: 100.0,

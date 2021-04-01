@@ -1,5 +1,7 @@
 // import 'dart:js_util';
 
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // import 'package:http/http.dart';
@@ -10,7 +12,16 @@ import 'intl/kl_demo_localizations.dart';
 import 'OpentionAnimation.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp()
+
+//显示PreviewDevice
+      // DevicePreview(
+      //   enabled: !kReleaseMode,
+      //   builder: (context){
+      //   return MyApp() ;
+      // })
+
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,6 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var materialApp = MaterialApp(
+      locale: DevicePreview.locale(context),
+
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false, //隐藏debug图标
 
 //配置国际化语言
@@ -45,7 +59,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home:  OpenAnimationPage(),
+      home: OpenAnimationPage(),
       // initialRoute: '/', //替换home:tabs()
       onGenerateRoute: onGenerateRoute,
     );

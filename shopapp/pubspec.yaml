@@ -38,6 +38,7 @@ dependencies:
   fluro: ^1.6.3 #路由跳转
   flutter_html: ^1.0.0-pre.1  #加载web
   shared_preferences: ^0.5.8 #数据存储
+  flare_loading: ^2.1.1
  
   flutter_localizations:
     sdk: flutter

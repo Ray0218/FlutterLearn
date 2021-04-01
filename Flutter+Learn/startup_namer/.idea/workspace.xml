@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8d01b797-899c-4202-9cf5-084a82284309" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ProjectId" id="1ljw8l0mi4XQqV16xy8jDjJ1m9A" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="dart.analysis.tool.window.force.activate" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8d01b797-899c-4202-9cf5-084a82284309" name="Default Changelist" comment="" />
+      <created>1608123650423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608123650423</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="2168" height="396" key="GridCell.Tab.0.bottom" timestamp="1608174351393">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2168" height="396" key="GridCell.Tab.0.bottom/0.23.2560.1417@0.23.2560.1417" timestamp="1608174351393" />
+    <state width="2168" height="396" key="GridCell.Tab.0.center" timestamp="1608174351393">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2168" height="396" key="GridCell.Tab.0.center/0.23.2560.1417@0.23.2560.1417" timestamp="1608174351393" />
+    <state width="2168" height="396" key="GridCell.Tab.0.left" timestamp="1608174351392">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2168" height="396" key="GridCell.Tab.0.left/0.23.2560.1417@0.23.2560.1417" timestamp="1608174351392" />
+    <state width="2168" height="396" key="GridCell.Tab.0.right" timestamp="1608174351393">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state width="2168" height="396" key="GridCell.Tab.0.right/0.23.2560.1417@0.23.2560.1417" timestamp="1608174351393" />
+    <state x="1400" y="508" key="SettingsEditor" timestamp="1608173842424">
+      <screen x="0" y="23" width="2560" height="1417" />
+    </state>
+    <state x="1400" y="508" key="SettingsEditor/0.23.2560.1417@0.23.2560.1417" timestamp="1608173842424" />
+  </component>
+</project>

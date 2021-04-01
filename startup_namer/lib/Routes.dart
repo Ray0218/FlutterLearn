@@ -24,11 +24,8 @@ final routes = {
   '/registerThird': (context) => RegisterThirdPage(),
   '/tabbatController': (context) => TabbarControllerPage(),
   '/userCenter': (context) => UserCenterPage(),
-
-    '/getFlutterData': (context) => GetHttpDataPage(),
-    '/sliderViewDemo': (context) =>SliverDemoPage(),
-
-
+  '/getFlutterData': (context) => GetHttpDataPage(),
+  '/sliderViewDemo': (context) => SliverDemoPage(),
 };
 
 // ignore: top_level_function_literal_block

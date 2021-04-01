@@ -9,6 +9,7 @@ import '../model/category_list_demo.dart';
 import '../service/service_method.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../routes/application.dart';
+import 'package:flare_loading/flare_loading.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -122,9 +123,11 @@ class _LeftCategoryViewState extends State<LeftCategoryView> {
   }
 
   void _getCategoryListData(String cagegoryId) {
+    print(cagegoryId);
     var data = {'categoryId': cagegoryId, 'categorySubId': "", 'page': 1};
 
     requestData(serviePath['getMallGoods'], formdata: data).then((value) {
+      print('数据请求成功');
       CategoryListModel categoryM = CategoryListModel.fromJson(value);
 
       Provide.value<CagegoryListProvide>(context)
@@ -213,15 +216,16 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
         child: Container(
       width: ScreenUtil().setWidth(750 - 200),
       child: Provide<CagegoryListProvide>(builder: (context, chiild, provide) {
-        // try {
-        //   if (Provide.value<CagegoryListProvide>(context).rPage == 1 ) {
-        //     print('当前是第一页');
-        //     rScrollerController.jumpTo(0.0); //返回到顶部
-        //   }
-        // } catch (e) {
-        //   print('进入页面第一次初始化 $e');
-        // }
+        try {
+          if (Provide.value<CagegoryListProvide>(context).rPage == 1 ) {
+            print('当前是第一页');
+            rScrollerController.jumpTo(0.0); //返回到顶部
+          }
+        } catch (e) {
+          print('进入页面第一次初始化 $e');
+        }
 
+        print('有新的数据 ${provide.rChildList}');
         if (provide.rChildList.length > 0) {
           return ListView.builder(
             controller: rScrollerController,
@@ -269,7 +273,7 @@ class _CategoryGoodsListState extends State<CategoryGoodsList> {
     return Container(
       width: ScreenUtil().setWidth(200),
       // child: Image.network(kltransImages(rDataList[index].image)),
-   child: klImage(rDataList[index].image,width: 100.0,height: 100.0),
+      child: klImage(rDataList[index].image, width: 100.0, height: 100.0),
     );
   }
 

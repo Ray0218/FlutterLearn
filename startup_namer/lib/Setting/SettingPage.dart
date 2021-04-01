@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:startup_namer/LocalizeDemo.dart';
 import 'package:startup_namer/Setting/TextFields.dart';
@@ -9,8 +10,6 @@ import 'Swiper.dart';
 import 'Dialog.dart';
 import 'ExpansionPanelDemo.dart';
 import '../LocalizeDemo.dart';
-
-
 
 class SettingPage extends StatefulWidget {
   SettingPage({Key key}) : super(key: key);
@@ -89,9 +88,8 @@ class _SettingState extends State<SettingPage> {
                   title: Text(
                       '${Localizations.localeOf(context)} + ${KLLocalizations.local(context).rTitle}'),
                 ),
-
-                  ListTile(
-                  title: Text( KlDemoLocalizations.of(context).greet('傻傻')),
+                ListTile(
+                  title: Text(KlDemoLocalizations.of(context).greet('傻傻')),
                 )
               ],
             ),
@@ -274,6 +272,24 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
             ),
           ],
         ),
+        Row(
+          children: [
+            CupertinoButton(
+              child: Text("CupertinoButton"),
+              color: Colors.blue,
+              onPressed: (){
+
+              },
+            ),
+           
+          ],
+        ),
+         CupertinoButton.filled(
+              child: Text("CupertinoButton.filled"),
+              onPressed: (){
+
+            },),
+            
         Row(
           children: <Widget>[
             ButtonBar(

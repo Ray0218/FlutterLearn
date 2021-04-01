@@ -41,7 +41,7 @@ class CagegoryListProvide with ChangeNotifier {
 //修改分类筛选
   changeCategoryId(String categoryId) {
     rcategoryId = categoryId;
-    notifyListeners();
+    // notifyListeners();
   }
 
   changeTypeIndex(int index) {

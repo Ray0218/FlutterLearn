@@ -2,9 +2,9 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:startup_namer/Home/Sliverdemo.dart';
 import 'package:startup_namer/home/wripDemo.dart';
 import 'package:startup_namer/home/stackDemo.dart';
-import 'package:startup_namer/home/rowColum.dart';
 import 'package:startup_namer/home/gridViewDemo.dart';
 import 'package:startup_namer/home/expandDemo.dart';
 import 'package:startup_namer/home/cardDemo.dart';
@@ -13,6 +13,7 @@ import 'package:startup_namer/home/cuslistcell.dart';
 import 'package:startup_namer/slRandomClor.dart';
 import 'package:english_words/english_words.dart';
 
+import 'CupertinoFormSection.dart';
 import 'nativeIosView.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +26,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _suggestions = <String>[
     "testTable",
-    'TestRow',
+    'CupertinoFormSection',
     'testContainer',
     'testFlow',
     'testWrip',
@@ -41,7 +42,8 @@ class _HomePageState extends State<HomePage> {
     'card and AspectRatio',
     'TestCardDemo',
     'autocomplete',
-    'KLNativeViewDemo'
+    'KLNativeViewDemo',
+    'KLSliverDemo'
   ];
 
   final _saved = new Set<String>();
@@ -50,11 +52,8 @@ class _HomePageState extends State<HomePage> {
   ScrollController _scrComtroller = ScrollController();
 
   @override
-  void initState() { 
- 
+  void initState() {
     super.initState();
- 
-     
   }
 
   @override
@@ -411,79 +410,105 @@ class _HomePageState extends State<HomePage> {
     Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (context) {
-          return new Scaffold(
-            appBar: new AppBar(
-              title: new Text(title),
-            ),
-            body: _getChild(index),
-          );
+          return _getChild(index, title);
         },
       ),
     );
   }
 
-  Widget _getChild(int index) {
+  Widget _getChild(int index, String titlle) {
+    Widget _body;
+    bool _needAppBar = true;
     switch (index) {
       case 0:
-        return _testTable();
+        _body = _testTable();
         break;
 
       case 1:
-        return TestRow();
+        _body = TestRow();
         break;
 
       case 2:
-        return _testContainer();
+        _body = _testContainer();
         break;
 
       case 3:
-        return _testFlow();
+        _body = _testFlow();
         break;
 
       case 4:
-        return WirpDemo();
+        _body = WirpDemo();
         break;
 
       case 5:
-        return _testGridView();
+        _body = _testGridView();
         break;
 
       case 6:
-        return _testOthers();
+        _body = _testOthers();
         break;
       case 7:
-        return TestListCell();
+        _body = TestListCell();
         break;
       case 8:
-        return _testListBody();
+        _body = _testListBody();
+        break;
 
       case 9:
-        return TestColumn();
+        _body = TestColumn();
+        break;
 
       case 10:
-        return TestCircle();
+        _body = TestCircle();
+        break;
 
       case 11:
-        return GridViewBuild();
+        _body = GridViewBuild();
+        break;
+
       case 12:
-        return TestExpand();
+        _body = TestExpand();
+        break;
 
       case 13:
-        return TestStack();
+        _body = TestStack();
+        break;
+
       case 14:
-        return TestCard();
+        _body = TestCard();
+        break;
+
       case 15:
-        return TestCardDemo();
+        _body = TestCardDemo();
+        break;
 
       case 16:
-        return AutocompleteBasicExample();
+        _body = AutocompleteBasicExample();
+        break;
 
+      case 17:
+        _body = KLNativeViewDemo();
+        break;
 
-  case 17:
-        return  
-        KLNativeViewDemo();
+      case 18:
+        _body = KLSliverDemo();
+        _needAppBar = false;
+        break;
+
       default:
-        return Text('no function');
+        _body = Text('no function');
+        break;
+    }
+
+    if (_needAppBar) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(titlle),
+        ),
+        body: _body,
+      );
+    } else {
+      return _body;
     }
   }
 

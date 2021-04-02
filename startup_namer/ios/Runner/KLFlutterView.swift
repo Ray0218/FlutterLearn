@@ -68,6 +68,17 @@ class KLFlutterView: NSObject,FlutterPlatformView  {
         
        rChannel = FlutterBasicMessageChannel(name: "BasicMessageChannel", binaryMessenger: messenger)
         
+        rChannel?.setMessageHandler({ [self] (message, apply) in
+             
+            
+            if let str = messenger as? String{
+ 
+                rLabel.text =  str as? String
+
+                
+            }
+        })
+        
         rView.frame = frame
         rView.addSubview(rLabel)
         

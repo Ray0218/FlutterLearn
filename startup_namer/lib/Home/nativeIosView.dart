@@ -22,6 +22,7 @@ class _KLNativeViewDemoState extends State<KLNativeViewDemo> {
   void initState() {
     super.initState();
 
+
     _messageChannel.setMessageHandler((message) {
 
       print('收到原生传过来的值') ;
@@ -39,6 +40,8 @@ class _KLNativeViewDemoState extends State<KLNativeViewDemo> {
         ElevatedButton(
             onPressed: () {
               _platform.invokeMethod('setText', {'name': '名声', 'age': 18});
+
+              _messageChannel.send('通过messageChanngel传到原生的数据') ;
             },
             child: Text('传值到原生view')),
         Text('iOS 原生返回的数据$_index'),

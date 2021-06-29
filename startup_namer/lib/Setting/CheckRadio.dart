@@ -122,13 +122,14 @@ class _CheckViewState extends State<CheckView> {
                     this.flag = value;
                   });
                 }),
-                CupertinoSwitch(value: flag, onChanged: (bool value) { 
-
-                  setState(() {
-                                      flag = value;
-                                    });
-
-                 },),
+            CupertinoSwitch(
+              value: flag,
+              onChanged: (bool value) {
+                setState(() {
+                  flag = value;
+                });
+              },
+            ),
             SwitchListTile(
                 value: this.flag,
                 title: Text('swithcA'),
@@ -153,15 +154,22 @@ class _CheckViewState extends State<CheckView> {
                     _sliderValue = value;
                   });
                 }),
-            Text('slider当前值:  ${this._sliderValue}'),
-            CupertinoSlider(
-              onChanged: (double value) {
-                setState(() {
-                  _sliderValue = value;
-                });
-              },
-              value: _sliderValue,
-            )
+            StatefulBuilder(
+                builder: (BuildContext context, StateSetter setState) {
+              return Column(
+                children: [
+                  Text('slider当前值:  ${this._sliderValue}'),
+                  CupertinoSlider(
+                    onChanged: (double value) {
+                      setState(() {
+                        _sliderValue = value;
+                      });
+                    },
+                    value: _sliderValue,
+                  )
+                ],
+              );
+            }),
           ],
         )
       ],

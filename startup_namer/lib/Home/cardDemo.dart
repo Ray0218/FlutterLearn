@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/Setting/SliderDemo.dart';
 import 'package:startup_namer/slRandomClor.dart';
 import 'package:startup_namer/listData.dart';
 
@@ -42,9 +43,12 @@ class TestCardDemo extends StatelessWidget {
               AspectRatio(
                 child: ClipRect(
                   clipBehavior: Clip.hardEdge,
-                  child: Image.network(
-                    value['imageUrl'],
-                    fit: BoxFit.cover,
+                  child: FittedBox(
+fit: BoxFit.cover,
+                    child: FadeInImage(
+                    placeholder:  NetworkImage('https://picsum.photos/200/200?random=44'),
+                    
+                     image:  NetworkImage(value['imageUrl'])),
                   ),
                 ),
                 aspectRatio: 2,

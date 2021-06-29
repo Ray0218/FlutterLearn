@@ -30,10 +30,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var materialApp = MaterialApp(
+
+
+
+// debugShowMaterialGrid: true, //打开网格
+// showPerformanceOverlay: true, //打开性能检测
+      debugShowCheckedModeBanner: false, //隐藏debug图标
+
       locale: DevicePreview.locale(context),
 
       builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false, //隐藏debug图标
 
 //配置国际化语言
       localizationsDelegates: [
@@ -41,7 +47,9 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         KLLocalieationDelegate(),
-        KLDemoLocalieationDelegate()
+        KLDemoLocalieationDelegate(),
+
+        GlobalCupertinoLocalizations.delegate //CupertinoAlertDialog使用需要
       ],
       supportedLocales: [
         //此处

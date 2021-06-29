@@ -68,8 +68,12 @@ class _TabsState extends State<Tabs> {
       //     color: Colors.purple,
       //   ),
       // ),
+      // 
+      // 
+ 
+      bottomNavigationBar:  BottomNavigationBar(
 
-      bottomNavigationBar: BottomNavigationBar(
+        
 
         currentIndex: this._currentIndex, //选中的索引
         onTap: (int index) {

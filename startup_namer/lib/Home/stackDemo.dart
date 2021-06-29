@@ -14,20 +14,63 @@ class TestStack extends StatelessWidget {
 
           children: <Widget>[
             Align(
-              child: Icon(
-                Icons.face,
-                size: 60,
-                color: slRandomColor(),
+              child: InkWell(
+                onTap: () {
+                  print('点击了蓝色');
+                },
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  color: Colors.blue,
+                ),
               ),
-              alignment: Alignment(0, 1),
+              alignment: Alignment(0, 0),
             ),
+           
             Align(
-              child: Icon(
-                Icons.airplanemode_active,
-                size: 60,
-                color: slRandomColor(),
+              child: AbsorbPointer(
+                child: InkWell(
+                  onTap: () {
+                    print('点击了黑色');
+                  },
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    color: Colors.black,
+                  ),
+                ),
               ),
-              alignment: Alignment.topLeft,
+              alignment: Alignment(-0.5, -0.5),
+            ),
+
+             Align(
+              child:  InkWell(
+                  onTap: () {
+                    print('点击了黄色');
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.yellow,
+                  ),
+                ),
+              alignment: Alignment(1, 0),
+            ),
+
+             Align(
+              child: IgnorePointer(
+                child: InkWell(
+                  onTap: () {
+                    print('点击了红色色');
+                  },
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              alignment: Alignment(0.5, 0.5),
             ),
             Align(
               child: Icon(

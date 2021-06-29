@@ -48,12 +48,25 @@ class _FormDemoPageState extends State<FormDemoPage> {
                 elevation: 0.0,
                 child: Text('提交'),
               ),
-            )
+            ),
+
+
+            RichText(text: TextSpan(children: [
+              TextSpan(text: '登录即视为同意', style: TextStyle(color: Colors.black)),
+              TextSpan(
+                text: '《xxx服务协议》',
+                style: TextStyle(color: Colors.red),
+              ),
+            ]
+
+            ))
           ],
         ));
   }
 
   void submitRegister() {
+
+    FocusScope.of(context).unfocus() ;
     if (registerFormKey.currentState.validate()) {
       //验证成功
       registerFormKey.currentState.save();

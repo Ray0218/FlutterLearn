@@ -14,6 +14,7 @@ class _ChipDemoState extends State<ChipDemo> {
   List<String> _selectStr = [];
   String actionStr = 'nothing';
   String choiceStr = 'apple';
+  bool _selected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,18 @@ class _ChipDemoState extends State<ChipDemo> {
           ChipView(),
           Divider(
             color: Colors.black,
+          ),
+          Text('RawChip:  '),
+          RawChip(
+            label: Text('老孟'),
+            selected: _selected,
+            onSelected: (v) {
+              setState(() {
+                _selected = v;
+              });
+            },
+            selectedColor: Colors.blue,
+            selectedShadowColor: Colors.red,
           ),
           Wrap(
             spacing: 5,

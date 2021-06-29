@@ -9,7 +9,8 @@ class AnimationDemo extends StatelessWidget {
       appBar: AppBar(
         title: Text('Animation Demo'),
         elevation: 0.0,
-      ),
+        
+       ),
       body: AnimationHome(),
     );
   }
@@ -31,9 +32,10 @@ class _AnimationHomeState extends State<AnimationHome>
 
   CurvedAnimation curAnimation;
 
+  bool click = false;
+
   @override
   void initState() {
-
     animationDemoController = AnimationController(
       duration: Duration(milliseconds: 3000),
       vsync: this,
@@ -64,27 +66,48 @@ class _AnimationHomeState extends State<AnimationHome>
 
     // animationDemoController.forward(); //开始播放动画
 
-        super.initState();
-
+    super.initState();
   }
 
   @override
   void dispose() {
     animationDemoController.dispose();
 
-        super.dispose();
-
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     print("######   AnimationHome 重载了   #######");
 
-    return Center(
-      child: AnimationHeart(
-        animations: [animation, animationColor],
-        controller: animationDemoController,
-      ),
+    return Column(
+      children: [
+        AnimationHeart(
+          animations: [animation, animationColor],
+          controller: animationDemoController,
+        ),
+        StatefulBuilder(builder: (context, setstate) {
+          return GestureDetector(
+            onTap: () {
+              setstate(() => click = !click);
+            },
+            child: AnimatedContainer(
+              height: click ? 200 : 100,
+              width: click ? 200 : 100,
+              duration: Duration(seconds: 3),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image:
+                        NetworkImage('https://picsum.photos/200/200?random=22'),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(
+                    click ? 200 : 0,
+                  ))),
+            ),
+          );
+        })
+      ],
     );
   }
 }
@@ -98,7 +121,9 @@ class AnimationHeart extends AnimatedWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("#############");
+    print("######${DateTime.now()}#######");
+
+
 
     print("######   AnimationHeart 重载了   #######");
 

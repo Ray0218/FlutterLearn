@@ -32,8 +32,6 @@ class _StateManagerDemoState extends State<StateManagerDemo> {
     //   ),
     // );
 
-    
-
     return ScopedModel(
       model: CounterModel(),
       child: Scaffold(
@@ -47,7 +45,34 @@ class _StateManagerDemoState extends State<StateManagerDemo> {
                 child: Icon(Icons.add), onPressed: model.increaseCount);
           },
         ),
-        body: CounterFather(),
+        body: Stack(children: [
+
+          CounterFather(),
+
+          Ink(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Colors.orange, Colors.blue]),
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        child: InkWell(
+
+          
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          child: Container(
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+            child: Text(
+              '这是InkWell的点击效果',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          onTap: () {},
+        ),
+      )
+ 
+   
+        ],),
       ),
     );
   }
@@ -100,9 +125,6 @@ class CounterFather extends StatelessWidget {
     return Center(child: Counter());
   }
 }
-  
-
-
 
 class CounterProvider extends InheritedWidget {
   final int count;
@@ -131,3 +153,20 @@ class CounterModel extends Model {
     notifyListeners();
   }
 }
+
+
+
+ class KLMyModel extends InheritedModel{
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    // TODO: implement updateShouldNotify
+    throw UnimplementedError();
+  }
+
+  @override
+  bool updateShouldNotifyDependent(covariant InheritedModel oldWidget, Set dependencies) {
+    // TODO: implement updateShouldNotifyDependent
+    throw UnimplementedError();
+  }
+
+ }

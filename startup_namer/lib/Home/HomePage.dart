@@ -3,6 +3,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:startup_namer/Home/Sliverdemo.dart';
+import 'package:startup_namer/Home/dataTableDemo.dart';
+import 'package:startup_namer/Home/dragableScrolTablesheet.dart';
+import 'package:startup_namer/Home/flowDemo.dart';
+import 'package:startup_namer/Home/needScrollViewDemo.dart';
 import 'package:startup_namer/home/wripDemo.dart';
 import 'package:startup_namer/home/stackDemo.dart';
 import 'package:startup_namer/home/gridViewDemo.dart';
@@ -40,10 +44,13 @@ class _HomePageState extends State<HomePage> {
     'expand',
     'stackDemo',
     'card and AspectRatio',
-    'TestCardDemo',
+    'TestCard and FadeImage',
     'autocomplete',
     'KLNativeViewDemo',
-    'KLSliverDemo'
+    'KLSliverDemo',
+    'KLDAtaColumn',
+    'DraggableScrollableSheet',
+    'NeedScrollPage'
   ];
 
   final _saved = new Set<String>();
@@ -62,6 +69,16 @@ class _HomePageState extends State<HomePage> {
     return new Scaffold(
       appBar: AppBar(
         title: Text('首页'),
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.search,
+                size: 20,
+              ),
+              onPressed: () {
+                _showSearchWiget(context);
+              })
+        ],
       ),
       drawer: Drawer(
         child: Column(
@@ -109,60 +126,60 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      endDrawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Expanded(
-                    child: UserAccountsDrawerHeader(
-                  accountName: Text('用户昵称'),
-                  accountEmail: Text('123@163.com'),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2905678561,227122043&fm=26&gp=0.jpg'),
-                  ),
-                  otherAccountsPictures: <Widget>[
-                    Image.network(
-                        'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1093983655,449926666&fm=111&gp=0.jpg'),
-                    Image.network(
-                        'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=10190708,1439802928&fm=111&gp=0.jpg')
-                  ],
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2816775233,230540815&fm=26&gp=0.jpg'),
-                          fit: BoxFit.cover)),
-                )),
-              ],
-            ),
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.home),
-              ),
-              title: Text('我的空间'),
-            ),
-            Divider(),
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(
-                  Icons.supervised_user_circle,
-                  color: slRandomColor(),
-                ),
-              ),
-              title: Text('用户中心'),
-              onTap: () => Navigator.of(context).pushNamed('/userCenter'),
-            ),
-            Divider(),
-            ListTile(
-              leading: CircleAvatar(
-                child: Icon(Icons.settings),
-              ),
-              title: Text('设置中心'),
-            ),
-          ],
-        ),
-      ),
+      // endDrawer: Drawer(
+      //   child: Column(
+      //     children: <Widget>[
+      //       Row(
+      //         children: <Widget>[
+      //           Expanded(
+      //               child: UserAccountsDrawerHeader(
+      //             accountName: Text('用户昵称'),
+      //             accountEmail: Text('123@163.com'),
+      //             currentAccountPicture: CircleAvatar(
+      //               backgroundImage: NetworkImage(
+      //                   'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2905678561,227122043&fm=26&gp=0.jpg'),
+      //             ),
+      //             otherAccountsPictures: <Widget>[
+      //               Image.network(
+      //                   'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1093983655,449926666&fm=111&gp=0.jpg'),
+      //               Image.network(
+      //                   'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=10190708,1439802928&fm=111&gp=0.jpg')
+      //             ],
+      //             decoration: BoxDecoration(
+      //                 image: DecorationImage(
+      //                     image: NetworkImage(
+      //                         'https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2816775233,230540815&fm=26&gp=0.jpg'),
+      //                     fit: BoxFit.cover)),
+      //           )),
+      //         ],
+      //       ),
+      //       ListTile(
+      //         leading: CircleAvatar(
+      //           child: Icon(Icons.home),
+      //         ),
+      //         title: Text('我的空间'),
+      //       ),
+      //       Divider(),
+      //       ListTile(
+      //         leading: CircleAvatar(
+      //           child: Icon(
+      //             Icons.supervised_user_circle,
+      //             color: slRandomColor(),
+      //           ),
+      //         ),
+      //         title: Text('用户中心'),
+      //         onTap: () => Navigator.of(context).pushNamed('/userCenter'),
+      //       ),
+      //       Divider(),
+      //       ListTile(
+      //         leading: CircleAvatar(
+      //           child: Icon(Icons.settings),
+      //         ),
+      //         title: Text('设置中心'),
+      //       ),
+      //     ],
+      //   ),
+      // ),
       body: Container(
         color: Colors.lightBlue[50],
         // height: 590,
@@ -171,7 +188,25 @@ class _HomePageState extends State<HomePage> {
         margin: EdgeInsets.fromLTRB(15, 10, 15, 10),
         child: Stack(
           children: [
-            _buildSuggestions(),
+
+
+           Container(
+
+             height: 200,
+             width: 200,
+             child:  GridPaper(
+color: Colors.red,
+
+divisions: 2, //参数表示每个主网格的分割数。
+subdivisions:1,//参数表示次网格的分割数，包含它自身。
+
+             )
+             ,
+           ),
+            ScrollConfiguration(
+              child: _buildSuggestions(),
+              behavior: MyScrollBehavior(),
+            ),
             Positioned(
                 child: ElevatedButton(
               child: Text('回到最低部'),
@@ -201,6 +236,10 @@ class _HomePageState extends State<HomePage> {
       // ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  _showSearchWiget(BuildContext context) {
+    showSearch(context: context, delegate: CustomeSearchDelegate());
   }
 
   TableRow createTablerow(String a, String b, String c, String d) {
@@ -286,13 +325,6 @@ class _HomePageState extends State<HomePage> {
 
       //   maxWidth: 100
       // ),
-    );
-  }
-
-  Widget _testFlow() {
-    return Flow(
-      delegate: MarginFlowDelegate(),
-      children: formColorList(10),
     );
   }
 
@@ -395,10 +427,12 @@ class _HomePageState extends State<HomePage> {
         pair,
         style: _biggerFont,
       ),
-      trailing: new Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
+      // trailing: new Icon(
+      //   alreadySaved ? Icons.favorite : Icons.favorite_border,
+      //   color: alreadySaved ? Colors.red : null,
+      // ),
+      //
+      trailing: ExpandIcon(isExpanded: index % 3 == 0, onPressed: (isUp) {}),
       onTap: () {
         print(pair + '$index');
         _pushNextcontrol(pair, index);
@@ -433,7 +467,10 @@ class _HomePageState extends State<HomePage> {
         break;
 
       case 3:
-        _body = _testFlow();
+        // _body = _testFlow();
+        //
+        _body = KLFlowDemo();
+
         break;
 
       case 4:
@@ -495,6 +532,19 @@ class _HomePageState extends State<HomePage> {
         _needAppBar = false;
         break;
 
+      case 19:
+        _body = KLDAtaColumn();
+        _needAppBar = false;
+        break;
+      case 20:
+        _body = KLDragAbleDemo();
+        break;
+
+          case 21:
+        _body = NeedScrollPage();
+        _needAppBar = false;
+        break;
+
       default:
         _body = Text('no function');
         break;
@@ -543,32 +593,81 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class MarginFlowDelegate extends FlowDelegate {
-  EdgeInsets _margin = EdgeInsets.zero;
-
+class CustomeSearchDelegate extends SearchDelegate {
   @override
-  void paintChildren(FlowPaintingContext context) {
-    var offsetX = _margin.left;
-    var offsetY = _margin.top;
-    for (int i = 0; i < context.childCount; i++) {
-      var w = context.getChildSize(i).width + offsetX + _margin.right;
-      if (w < context.size.width) {
-        context.paintChild(i,
-            transform: new Matrix4.translationValues(offsetX, offsetY, 0.0));
-        offsetX = w + _margin.left;
-      } else {
-        offsetX = _margin.left;
-        offsetY +=
-            context.getChildSize(i).height + _margin.top + _margin.bottom;
-        context.paintChild(i,
-            transform: new Matrix4.translationValues(offsetX, offsetY, 0.0));
-        offsetX += context.getChildSize(i).width + _margin.left + _margin.right;
-      }
-    }
+  List<Widget> buildActions(BuildContext context) {
+    // TODO: implement buildActions
+
+    return [IconButton(icon: Icon(Icons.clear), onPressed: () {})];
   }
 
   @override
-  bool shouldRepaint(FlowDelegate oldDelegate) {
-    throw UnimplementedError();
+  Widget buildLeading(BuildContext context) {
+    // TODO: implement buildLeading
+    return IconButton(
+        icon: Icon(
+          Icons.arrow_back,
+          color: Colors.blue,
+        ),
+        onPressed: () {
+          close(context, ' ');
+        });
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    return ListView.separated(
+      itemBuilder: (context, index) {
+        return Container(
+          height: 60,
+          alignment: Alignment.center,
+          child: Text(
+            '$index',
+            style: TextStyle(fontSize: 20),
+          ),
+        );
+      },
+      separatorBuilder: (context, index) {
+        return Divider();
+      },
+      itemCount: 10,
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+    //
+    //
+    return ListView.separated(
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text('listTitle $index'),
+            onTap: () {},
+          );
+        },
+        separatorBuilder: (context, idnex) {
+          return Divider();
+        },
+        itemCount: Random().nextInt(15));
+  }
+}
+
+class MyScrollBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return GlowingOverscrollIndicator(
+      child: child,
+      axisDirection: axisDirection,
+      color: Colors.red,
+    );
+  }
+
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    // TODO: implement getScrollPhysics
+    return ClampingScrollPhysics();
   }
 }

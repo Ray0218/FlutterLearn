@@ -57,4 +57,7 @@ class CustomerDialog extends Dialog {
       timer.cancel(); //取消定时器
     });
   }
+
+ 
+
 }

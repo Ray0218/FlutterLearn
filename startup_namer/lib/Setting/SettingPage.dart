@@ -31,7 +31,7 @@ class _SettingState extends State<SettingPage> {
     Tab(text: '日期时间'),
     Tab(text: '轮播图(flutter_swiper)'),
     Tab(text: 'dialog'),
-    Tab(text: 'ExpansionPanel'),
+    Tab(text: 'ExpansionPanelList'),
   ];
 
   @override
@@ -54,6 +54,9 @@ class _SettingState extends State<SettingPage> {
                         isScrollable: true,
                         indicatorColor: Colors.red,
                         labelColor: Colors.blue,
+                        unselectedLabelColor: Colors.black,
+
+ 
                         indicatorSize: TabBarIndicatorSize.label,
                         tabs: _tabs)),
               ],
@@ -141,7 +144,9 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
   String _titleString = '首页';
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SingleChildScrollView(
+
+      child: Column(
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -290,6 +295,8 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
 
             },),
             
+
+            Text('ButtonBar'),
         Row(
           children: <Widget>[
             ButtonBar(
@@ -316,6 +323,8 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
             )
           ],
         ),
+
+        Text('PopupMenuButton') ,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -340,11 +349,41 @@ class _ButtonsDemoState extends State<ButtonsDemo> {
                   child: Text('community'),
                   value: 'commun',
                 ),
+
+
+
               ];
-            })
+            }),
+          
+
+                           
           ],
         )
+
+        ,
+         Text('DropdownButton'),
+
+DropdownButton(
+  
+  onChanged: (value){
+
+  },
+
+  value: null,
+  hint: Text('请选择'),
+  
+  items: [
+DropdownMenuItem(child: Text('DropdownMenuItem1'),value: '1',),
+DropdownMenuItem(child: Text('DropdownMenuItem2'),value: '2',),
+
+DropdownMenuItem(child: Text('DropdownMenuItem3'),value: '3',),
+
+DropdownMenuItem(child: Text('DropdownMenuItem4'),value: '4',)
+
+
+])
       ],
+    ),
     );
   }
 }

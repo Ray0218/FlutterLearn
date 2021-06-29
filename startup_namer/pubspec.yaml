@@ -40,8 +40,8 @@ dependencies:
   flutter_swiper: ^1.1.6
   fluttertoast: ^6.0.1
   dio: ^4.0.0
-  intl: ^0.17.0
- #国际化
+  # /国际化
+  intl: ^0.17.0  
   scoped_model: ^1.0.1
   rxdart: ^0.24.1
   # intl_translation: ^0.17.10+1

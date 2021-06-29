@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
- 
+
 //创建圆形的方法
 class TestCircle extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -55,20 +54,129 @@ class TestCircle extends StatelessWidget {
             // colorBlendMode: BlendMode.overlay,
             height: 70,
             fit: BoxFit.cover),
-       
+            Divider(),
+        Material(
+          borderRadius: BorderRadius.circular(12),
+          clipBehavior: Clip.hardEdge,
+          child: Image.asset('images/image.png',
+              alignment: Alignment.center,
+              color: Colors.orange,
+              colorBlendMode: BlendMode.overlay,
+              height: 70,
+              fit: BoxFit.cover),
+        ),
 
-       Material(
 
-         borderRadius: BorderRadius.circular(12),
-         clipBehavior: Clip.hardEdge,
-child:  Image.asset('images/image.png',
+ 
+
+Divider(),
+        ColorFiltered(colorFilter: ColorFilter.mode(Colors.orange , BlendMode.modulate),child:  Image.asset('images/image.png',
             alignment: Alignment.center,
-            color: Colors.orange,
-            colorBlendMode: BlendMode.overlay,
+            // color: Colors.orange,
+            // colorBlendMode: BlendMode.overlay,
             height: 70,
-            fit: BoxFit.cover),
-
-       )
+            fit: BoxFit.cover),),
+        RaisedButton(
+          shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.red),
+              borderRadius: BorderRadius.circular(10)),
+          child: Text('老孟'),
+          onPressed: () {},
+        ),
+        Container(
+          height: 45,
+          child: Card(
+            shape: BeveledRectangleBorder(
+                side: BorderSide(width: 1, color: Colors.red),
+                borderRadius: BorderRadius.circular(8)),
+            child: Text(
+              'BeveledRectangleBorder circle小于控件',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ),
+        Container(
+          height: 45,
+          child: Card(
+            shape: BeveledRectangleBorder(
+                side: BorderSide(width: 1, color: Colors.red),
+                borderRadius: BorderRadius.circular(20)),
+            child: Text(
+              'BeveledRectangleBorder circle大于控件',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ),
+        Container(
+          height: 45,
+          child: Card(
+            shape: BeveledRectangleBorder(
+                side: BorderSide(width: 1, color: Colors.red),
+                borderRadius: BorderRadius.circular(0)),
+            child: Text(
+              'BeveledRectangleBorder circle = 0',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ),
+        Container(
+          height: 45,
+          child: Card(
+            shape: Border(top: BorderSide(color: Colors.red, width: 2)),
+            child: Text(
+              'Border只设置上边框',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.orange,
+          height: 60,
+          child: Card(
+            color: Colors.red,
+            shape: CircleBorder(side: BorderSide(color: Colors.red)),
+            child: Text(
+              'CircleBorder',
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.lightGreen,
+          height: 60,
+          child: Card(
+            color: Colors.red,
+            shape: ContinuousRectangleBorder(
+                side: BorderSide(color: Colors.blue, width: 2.5),
+                borderRadius: BorderRadius.circular(20)),
+            child: Text(
+              'ContinuousRectangleBorder',
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        Container(
+          color: Colors.lightGreen,
+          height: 60,
+          child: Card(
+            color: Colors.red,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Text(
+              'RoundedRectangleBorder',
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        TextField(
+          decoration: InputDecoration(),
+          keyboardType: TextInputType.multiline,
+          onTap: () {},
+        )
       ],
     );
   }
